@@ -2,96 +2,139 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
-    - name: Date of Birth
-      value: 14th March 1879
+      value: Chandan Gowda K S
+    - name: Current Role
+      value: M.S. Computer Science Student
+    - name: Institution
+      value: Northeastern University, Boston, MA
     - name: Languages
-      value: English, German
+      value: English, Kannada, Hindi
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: M.S. in Computer Science
+      institution: Northeastern University, Boston, MA
+      year: Jan'25 - Present
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
+        - CGPA: 4.0/4.0
+        - Focus: Cloud Computing, Distributed Systems, Machine Learning
+        - Seeking Software Engineering co-op opportunities starting January 2026
+    - title: B.E. in Computer Science
+      institution: Nitte Meenakshi Institute of Technology (NMIT), Bengaluru
+      year: Aug'16 - Aug'20
       description:
-        - Description 1.
-        - Description 2.
+        - CGPA: 8.76/10
+        - Final Year Project: Doctor-Patient Assistant System using AI
+        - Published IEEE paper on the project
 
-- title: Experience
+- title: Professional Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Senior Software Engineer
+      institution: London Stock Exchange Group (LSEG), Bengaluru
+      year: Aug'22 - Dec'24
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
+        - Architected event-driven processing pipeline transforming 7.5M+ XML compliance records into standardized JSON at ~40 records/sec
+        - Engineered multi-queue priority routing framework in Python with AWS SQS and Lambda, improving turnaround time for high-priority cases by 35%
+        - Developed scalable microservices in Java Micronaut deployed on AWS Lambda with API Gateway
+        - Enhanced Lambda-based APIs performance by 40% through batch processing optimization and cold-start handling
+        - Hardened system security with AWS WAF, IAM-based secret rotation, and TLS communication, reducing security incidents by 50%
+        - Collaborated with cross-functional teams to maintain dual JSON and XML data flows during migration phase
+    - title: Senior Systems Engineer
+      institution: Infosys, Bengaluru
+      year: Oct'20 - Aug'22
       description:
-        - Description 1.
-        - Description 2.
+        - Developed and deployed RPA bots with OCR capabilities to extract structured data from PDFs and unstructured documents
+        - Automated data extraction processes in Robotic Process Automation (RPA) environments, improving processing speed by ~3X
+        - Collaborated with cross-functional teams to integrate structured data outputs into business applications
 
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
-      description:
-
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
-
-- title: Open Source Projects
-  type: time_table
+- title: Technical Skills
+  type: nested_list
   contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
-
-- title: Honors and Awards
-  type: time_table
-  contents:
-    - year: 1921
+    - title: Programming Languages
       items:
-        - Nobel Prize in Physics
-        - Matteucci Medal
-    - year: 2029
+        - Java (Expert)
+        - Python (Advanced)
+        - C# (Intermediate)
+    - title: Cloud & DevOps
       items:
-        - Max Planck Medal
+        - AWS (EC2, Lambda, SQS, API Gateway, WAF, IAM)
+        - Microservices Architecture
+        - Terraform
+        - CI/CD Pipelines
+        - Docker
+    - title: Frameworks & Libraries
+      items:
+        - Micronaut
+        - Spring Boot
+        - Django
+        - Pandas, NumPy
+        - Angular
+        - Mockito
+    - title: Databases
+      items:
+        - MySQL
+        - MongoDB
+    - title: Tools & Technologies
+      items:
+        - Git
+        - Maven
+        - JUnit
+        - Postman
+        - Jenkins
+
+- title: Projects & Achievements
+  type: time_table
+  contents:
+    - title: Doctor-Patient Assistant System
+      year: 2020
+      description: ML-AI, NLP, Google Cloud Platform - Probabilistic disease prediction system based on symptoms and questionnaire responses
+    - title: PUBG Data Analysis
+      year: 2023
+      description: NumPy, Pandas, Matplotlib - Comprehensive analysis of 4.4M+ match records for gaming analytics and win rate prediction
+    - title: Online Examination System
+      year: 2022
+      description: Django, Python, JavaScript, MongoDB - Multi-user testing platform with teacher login and result export features
+    - title: Face Recognition System
+      year: 2021
+      description: Python, CNN, Digital Image Processing - Convolutional Neural Network achieving 90% accuracy for security applications
+
+- title: Certifications & Awards
+  type: time_table
+  contents:
+    - year: 2024
+      items:
+        - AWS Certified Cloud Practitioner
+        - Automation Anywhere Certified RPA Professional
+    - year: 2020
+      items:
+        - Published IEEE paper on "Doctor-Patient Assistance System using Artificial Intelligence"
+        - Active participant in Hackathons and CTF competitions
 
 - title: Academic Interests
   type: nested_list
   contents:
-    - title: Topic 1.
+    - title: Cloud Computing & Distributed Systems
       items:
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
+        - Microservices Architecture
+        - Serverless Computing
+        - Container Orchestration
+    - title: Machine Learning & AI
       items:
-        - Description 1.
-        - Description 2.
+        - Neural Networks
+        - Computer Vision
+        - Natural Language Processing
+    - title: Software Engineering
+      items:
+        - Backend Development
+        - API Design
+        - System Security
+        - Performance Optimization
 
 - title: Other Interests
   type: list
   contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+    - <u>Competitive Gaming:</u> Active Dota 2 player with competitive experience, fostering teamwork and strategic planning
+    - <u>Hackathons:</u> Regular participant in coding competitions and cybersecurity CTF events
+    - <u>Open Source:</u> Contributing to various projects and maintaining 20+ repositories on GitHub

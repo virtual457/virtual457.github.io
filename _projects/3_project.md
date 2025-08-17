@@ -1,81 +1,108 @@
 ---
 layout: page
-title: project 3 with very long name
-description: a project that redirects to another website
-img: assets/img/7.jpg
-redirect: https://unsplash.com
-importance: 3
-category: work
+title: Port Management System - Maritime Logistics Platform
+subtitle: Django, MySQL, Advanced SQL, Pathfinding Algorithms, Multi-Role Management
+permalink: /projects/3_project/
+thumbnail: assets/img/port.jpg
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+**Port Management System** is an advanced maritime logistics platform built with Django and MySQL, featuring sophisticated database design, complex pathfinding algorithms implemented in SQL, and comprehensive multi-role user management for shipping operations.
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+## 🚢 System Overview
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+This enterprise-level application manages complex maritime logistics operations with multi-role user management, real-time route optimization, and sophisticated booking systems. The project demonstrates advanced SQL implementation including **Dijkstra-like pathfinding algorithms** to optimize shipping routes.
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
+## 🏗️ Architecture & Design
 
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
+### Database Architecture
+- **Normalized Schema Design** with proper foreign key relationships
+- **Stored Procedures & Functions** for complex business logic
+- **Triggers** for automatic data consistency
+- **Common Table Expressions (CTEs)** for complex queries
+- **Spatial Indexing** for geographical data
+- **Transaction Management** for data integrity
 
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
+### Advanced SQL Implementation
 
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
+#### Pathfinding Algorithms in SQL
+1. **Direct Route Finding** - Finds direct routes between ports with capacity constraints
+2. **Connected Route Finding (Multi-Segment)** - Implements graph traversal to find connected routes
+3. **Route Optimization with CTEs** - Uses Common Table Expressions for complex route calculations
 
-{% raw %}
+#### Complex Business Logic in Stored Procedures
+- **Berth Availability Management** - Real-time berth availability checking with conflict detection
+- **Connected Booking Management** - Multi-segment booking with transaction management
+- **Advanced Query Patterns** - Recursive CTEs, Window Functions, and Spatial Queries
 
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
-```
+## 👥 Multi-Role User Management
 
-{% endraw %}
+### 🔧 Admin
+- **User Management**: Create, edit, delete users with role assignments
+- **Port Management**: Add, edit, delete ports with spatial coordinates
+- **Berth Management**: Manage berth assignments and availability
+- **System Analytics**: Comprehensive reporting and dashboard
+- **Database Administration**: Full system oversight
+
+### 🚢 Shipowner
+- **Fleet Management**: Manage ships, routes, and schedules
+- **Route Optimization**: Advanced pathfinding for optimal routes
+- **Berth Scheduling**: Real-time berth availability and booking
+- **Revenue Analytics**: Detailed financial reporting
+- **Schedule Management**: Complex voyage planning
+
+### 📦 Customer
+- **Cargo Management**: Create and manage cargo shipments
+- **Route Search**: Find optimal shipping routes (direct & connected)
+- **Booking System**: Book cargo on available schedules
+- **Tracking**: Real-time shipment tracking
+- **Support**: Customer service integration
+
+### 👨‍💼 Manager/Staff
+- **Operational Oversight**: Monitor port operations
+- **Berth Coordination**: Manage berth assignments
+- **Schedule Monitoring**: Track vessel movements
+- **Reporting**: Generate operational reports
+
+## 🛠️ Technical Implementation
+
+### Database Skills Demonstrated
+
+1. **Advanced SQL Techniques**
+   - **Stored Procedures**: 50+ complex business logic procedures
+   - **Functions**: Custom SQL functions for data manipulation
+   - **Triggers**: Automatic data consistency maintenance
+   - **Views**: Complex data aggregation and reporting
+   - **Indexes**: Performance optimization with strategic indexing
+
+2. **Pathfinding Algorithms**
+   - **Dijkstra-like Implementation**: Route optimization in SQL
+   - **Graph Traversal**: Multi-segment route finding
+   - **Constraint Satisfaction**: Capacity and time-based routing
+   - **Cost Optimization**: Minimum cost path calculation
+
+3. **Data Integrity & Transactions**
+   - **ACID Compliance**: Full transaction support
+   - **Referential Integrity**: Comprehensive foreign key constraints
+   - **Data Validation**: Extensive check constraints
+   - **Error Handling**: Robust exception management
+
+## 💻 Technical Stack
+
+- **Backend**: Django 4.2+
+- **Database**: MySQL 8.0+
+- **Language**: Python 3.8+
+- **ORM**: Django ORM with advanced SQL
+- **Architecture**: MVC with advanced database design
+- **Features**: Spatial data types, complex queries, stored procedures
+
+## 🎯 Learning Outcomes
+
+This project demonstrates:
+- **Advanced database management** and SQL optimization
+- **Complex algorithm implementation** in SQL
+- **Multi-role application design** and user management
+- **Spatial data handling** and geographical operations
+- **Enterprise-level system architecture** with proper data integrity
+
+[View Project on GitHub](https://github.com/virtual457/Port-Management-System){: .btn .btn-primary .btn-sm}
+[View Documentation](https://github.com/virtual457/Port-Management-System/blob/master/README.md){: .btn .btn-outline-primary .btn-sm}

@@ -1,81 +1,95 @@
 ---
 layout: page
-title: project 2
-description: a project with a background image and giscus comments
-img: assets/img/3.jpg
-importance: 2
-category: work
-giscus_comments: true
+title: PUBG Win Rate Prediction & Data Analysis
+subtitle: Python, Machine Learning, Data Visualization, Statistical Modeling
+permalink: /projects/2_project/
+thumbnail: assets/img/pubg.jpg
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+**PUBG Win Rate Prediction & Data Analysis** is a comprehensive data science project analyzing over **4.4 million PUBG match records** to understand what factors contribute to winning in the world's most popular battle royale game.
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+## 📊 Project Overview
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+This project examines player behavior patterns across different game modes (Solo, Duo, Squad) to identify key performance indicators and build predictive models for win probability. The analysis reveals fascinating insights about player strategies and winning patterns.
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
+## 🔍 Key Findings
 
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
+### Winning Strategies by Game Mode
 
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
+| Game Mode | Best Strategy | Win Rate Impact |
+|-----------|---------------|-----------------|
+| **Solo** | Aggressive kills + Movement | High correlation with kills |
+| **Duo** | Team coordination + Kills | Balanced approach |
+| **Squad** | Team support + Survival | Kills less important than teamwork |
 
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
+### Top Win Rate Predictors
 
-{% raw %}
+1. **Walking Distance** (Highest positive correlation)
+2. **Boost Items Used** (Strong positive correlation)
+3. **Healing Items Used** (Moderate positive correlation)
+4. **Kill Placement** (Highest negative correlation)
+5. **Swimming Distance** (Surprisingly strong correlation)
 
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
-```
+## 🎯 What Makes a PUBG Winner?
 
-{% endraw %}
+The analysis reveals fascinating insights about player strategies:
+- **The Killers**: Only 0.37% of players win without a single kill
+- **The Runners**: Walking distance has the highest correlation with win rate
+- **The Drivers**: Vehicle usage shows moderate correlation with success
+- **The Swimmers**: Swimming ability correlates strongly with victory
+- **The Healers**: Boost items are more valuable than healing items
+
+## 📈 Data Structure
+
+The dataset contains **29 features** across **4.4 million match records**:
+
+### Core Gameplay Metrics
+- **kills** - Number of enemy players eliminated
+- **walkDistance** - Distance traveled on foot (meters)
+- **rideDistance** - Distance traveled in vehicles (meters)
+- **swimDistance** - Distance traveled swimming (meters)
+- **damageDealt** - Total damage inflicted
+- **heals** - Number of healing items used
+- **boosts** - Number of boost items used
+
+### Team-Based Features
+- **assists** - Enemy players damaged but killed by teammates
+- **DBNOs** - Enemy players knocked (Duo/Squad only)
+- **revives** - Teammates revived (Duo/Squad only)
+- **teamKills** - Friendly fire incidents
+
+## 🛠️ Technical Implementation
+
+### Data Analysis Pipeline
+- **Data Cleaning**: Handling missing values and outliers
+- **Feature Engineering**: Creating derived features and correlations
+- **Statistical Analysis**: Correlation studies and hypothesis testing
+- **Visualization**: Rich visualizations using Seaborn and Matplotlib
+- **Model Development**: Machine learning models for win prediction
+
+### Visualizations Created
+- **Kill distribution** histograms
+- **Movement correlation** joint plots
+- **Game mode comparison** point plots
+- **Feature correlation** heatmaps
+- **Strategy effectiveness** box plots
+
+## 💻 Technical Stack
+
+- **Language**: Python 3.7+
+- **Data Manipulation**: Pandas, NumPy
+- **Visualization**: Matplotlib, Seaborn
+- **Environment**: Jupyter Notebook
+- **Analysis**: Statistical modeling, correlation analysis
+
+## 🎯 Learning Outcomes
+
+This project demonstrates:
+- **Large-scale data analysis** with 4.4M+ records
+- **Statistical modeling** and correlation studies
+- **Data visualization** best practices
+- **Machine learning** insights for gaming analytics
+- **Cross-mode analysis** and comparative studies
+
+[View Project on GitHub](https://github.com/virtual457/Data-analysis-on-pubg){: .btn .btn-primary .btn-sm}
+[View Analysis Notebook](https://github.com/virtual457/Data-analysis-on-pubg/blob/master/python.ipynb){: .btn .btn-outline-primary .btn-sm}

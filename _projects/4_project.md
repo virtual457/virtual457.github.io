@@ -1,80 +1,110 @@
 ---
 layout: page
-title: project 4
-description: another without an image
-img:
-importance: 3
-category: fun
+title: Stocks Simulator - Financial Trading Platform
+subtitle: Python, Real-time Market Data, Portfolio Management, Trading Strategies
+permalink: /projects/4_project/
+thumbnail: assets/img/stocks.jpg
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+**Stocks Simulator** is a comprehensive stock market simulation platform built with Python, featuring real-time market data integration, portfolio management, and trading strategies. This educational platform provides users with a realistic trading environment to learn investment concepts without financial risk.
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+## 📈 Platform Overview
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+This interactive platform simulates real-world stock market trading with comprehensive data analysis tools, providing users with a realistic trading environment to learn investment strategies, understand market dynamics, and practice portfolio management.
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
+## 🚀 Key Features
 
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
+### Real-time Market Data
+- **Live Stock Prices**: Real-time market data integration via yfinance API
+- **Market Indices**: Track major market indices and sector performance
+- **Historical Data**: Access to historical price data for analysis
+- **News Integration**: Market news and company announcements
 
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
+### Portfolio Management
+- **Virtual Trading**: Buy/sell stocks with virtual money
+- **Portfolio Tracking**: Monitor investments and performance
+- **Performance Analytics**: Detailed portfolio analysis and reporting
+- **Risk Management**: Stop-loss and limit order functionality
 
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
+### Advanced Charting & Analysis
+- **Technical Analysis**: Advanced charting with Plotly
+- **Multiple Timeframes**: Real-time, daily, weekly, and monthly data
+- **Technical Indicators**: Various technical analysis tools
+- **Interactive Charts**: Zoom, pan, and detailed price analysis
 
-{% raw %}
+### Educational Tools
+- **Learning Resources**: Tutorials and educational materials
+- **Strategy Testing**: Backtesting capabilities for trading strategies
+- **Risk Assessment**: Tools for understanding investment risk
+- **Performance Metrics**: Comprehensive analytics and insights
 
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
-```
+## 🛠️ Technical Implementation
 
-{% endraw %}
+### Data Integration
+- **yfinance API**: Real-time market data from Yahoo Finance
+- **Data Processing**: Pandas for data manipulation and analysis
+- **Real-time Updates**: Live price feeds and market information
+- **Data Storage**: SQLite database for portfolio and user data
+
+### User Interface
+- **Streamlit Framework**: Modern web application interface
+- **Responsive Design**: Works across different devices and screen sizes
+- **Interactive Components**: Real-time updates and user interactions
+- **Professional UI**: Clean, intuitive trading interface
+
+### Backend Architecture
+- **Python Backend**: Robust server-side processing
+- **Data Validation**: Comprehensive input validation and error handling
+- **Security Features**: Secure user authentication and data protection
+- **Scalable Design**: Architecture designed for future enhancements
+
+## 📊 Trading Features
+
+### Order Management
+- **Market Orders**: Real-time order execution simulation
+- **Limit Orders**: Price-based order placement
+- **Stop Orders**: Risk management through stop-loss orders
+- **Order History**: Complete trading history and audit trail
+
+### Portfolio Analytics
+- **Performance Tracking**: Real-time portfolio value calculation
+- **Return Analysis**: Various return metrics and comparisons
+- **Risk Metrics**: Volatility, beta, and other risk measures
+- **Sector Analysis**: Portfolio diversification analysis
+
+### Market Analysis
+- **Stock Screening**: Filter stocks based on various criteria
+- **Market Trends**: Identify market trends and patterns
+- **Sector Performance**: Compare sector performance
+- **Economic Indicators**: Integration with economic data
+
+## 💻 Technical Stack
+
+- **Language**: Python 3.x
+- **Data Processing**: Pandas, NumPy
+- **Visualization**: Plotly, Matplotlib
+- **Web Framework**: Streamlit
+- **Data Source**: yfinance API
+- **Database**: SQLite
+- **Deployment**: Cloud-ready architecture
+
+## 🎯 Learning Outcomes
+
+This project demonstrates:
+- **Real-time data integration** with financial APIs
+- **Complex financial calculations** and portfolio management
+- **Interactive data visualization** for financial analysis
+- **Web application development** with modern frameworks
+- **Financial technology** and trading system design
+- **Educational software** development for learning platforms
+
+## 🔮 Future Enhancements
+
+- **Options and Futures**: Advanced derivatives trading simulation
+- **Cryptocurrency**: Digital asset trading capabilities
+- **Social Trading**: Community features and strategy sharing
+- **Machine Learning**: AI-powered trading recommendations
+- **Mobile Application**: Cross-platform mobile trading app
+
+[View Project on GitHub](https://github.com/virtual457/Stocks-Simulator){: .btn .btn-primary .btn-sm}
+[View Documentation](https://github.com/virtual457/Stocks-Simulator/blob/master/README.md){: .btn .btn-outline-primary .btn-sm}
