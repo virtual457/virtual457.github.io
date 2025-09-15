@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chandan's Interactive Portfolio - Level Up Your Career</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-neon: #00ffff;
+            --secondary-neon: #ff0080;
+            --tertiary-neon: #80ff00;
+            --warning-neon: #ffff00;
+            --bg-dark: #0a0a0f;
+            --bg-darker: #050508;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --glass-bg: rgba(0, 255, 255, 0.05);
+            --glass-border: rgba(0, 255, 255, 0.2);
+            --glow-primary: 0 0 30px var(--primary-neon);
+            --glow-secondary: 0 0 30px var(--secondary-neon);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            overflow: hidden;
+        }
+
+        /* Custom Gaming Cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-neon);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transition: all 0.1s ease;
+            box-shadow: var(--glow-primary);
+        }
+
+        .cursor.interactive {
+            width: 40px;
+            height: 40px;
+            background: var(--secondary-neon);
+            box-shadow: var(--glow-secondary);
+        }
+
+        /* Game UI Container */
+        .game-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* 3D Scene Container */
+        #three-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #0a0a0f 0%, #1a0a2e 50%, #16213e 100%);
+        }
+
+        /* Gaming HUD */
+        .game-hud {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Player Stats (Top Left) */
+        .player-stats {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 20px;
+            pointer-events: auto;
+            min-width: 250px;
+        }
+
+        .player-name {
+            font-family: 'Orbitron', monospace;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-neon);
+            margin-bottom: 10px;
+            text-shadow: var(--glow-primary);
+        }
+
+        .level-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .level-badge {
+            background: var(--primary-neon);
+            color: var(--bg-dark);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .xp-bar {
+            flex: 1;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .xp-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-neon), var(--secondary-neon));
+            width: 75%;
+            border-radius: 4px;
+            box-shadow: 0 0 10px var(--primary-neon);
+            animation: xpGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes xpGlow {
+            from { box-shadow: 0 0 10px var(--primary-neon); }
+            to { box-shadow: 0 0 20px var(--primary-neon); }
+        }
+
+        .skill-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .skill-icon {
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--tertiary-neon);
+        }
+
+        /* Quest Log (Top Right) */
+        .quest-log {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 20px;
+            pointer-events: auto;
+            min-width: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .quest-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--warning-neon);
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px var(--warning-neon);
+        }
+
+        .quest-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid var(--tertiary-neon);
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .quest-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .quest-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .quest-description {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .quest-reward {
+            font-size: 11px;
+            color: var(--tertiary-neon);
+            margin-top: 5px;
+        }
+
+        /* Inventory/Skills Panel (Bottom Left) */
+        .inventory {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 20px;
+            pointer-events: auto;
+            min-width: 250px;
+        }
+
+        .inventory-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--tertiary-neon);
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px var(--tertiary-neon);
+        }
+
+        .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .inventory-slot {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .inventory-slot:hover {
+            background: rgba(0, 255, 255, 0.1);
+            border-color: var(--primary-neon);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .inventory-slot.filled {
+            background: linear-gradient(45deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 128, 0.1));
+            border-color: var(--primary-neon);
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-darker);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary-neon);
+            text-shadow: var(--glow-primary);
+            margin-bottom: 30px;
+            animation: titleGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from { text-shadow: 0 0 20px var(--primary-neon); }
+            to { text-shadow: 0 0 40px var(--primary-neon), 0 0 60px var(--primary-neon); }
+        }
+
+        .loading-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .loading-bar {
+            width: 400px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-neon), var(--secondary-neon));
+            width: 0%;
+            border-radius: 5px;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 20px var(--primary-neon);
+        }
+
+        .loading-text {
+            font-family: 'Orbitron', monospace;
+            color: var(--primary-neon);
+            font-size: 14px;
+        }
+
+        .start-button {
+            margin-top: 30px;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon));
+            border: none;
+            border-radius: 30px;
+            color: var(--bg-dark);
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .start-button.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .start-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
+        }
+
+        /* Modal System */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 5000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--glass-bg);
+            backdrop-filter: blur(30px);
+            border: 2px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: var(--glow-primary);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--secondary-neon);
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--primary-neon);
+            text-shadow: var(--glow-primary);
+            transform: scale(1.2);
+        }
+
+        .modal-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--primary-neon);
+            text-shadow: var(--glow-primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Achievement Notifications */
+        .achievement {
+            position: fixed;
+            top: 100px;
+            right: -400px;
+            background: linear-gradient(45deg, var(--tertiary-neon), var(--primary-neon));
+            color: var(--bg-dark);
+            padding: 15px 25px;
+            border-radius: 15px;
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            box-shadow: 0 0 30px var(--tertiary-neon);
+            transition: all 0.5s ease;
+            z-index: 6000;
+        }
+
+        .achievement.show {
+            right: 20px;
+        }
+
+        .achievement-icon {
+            display: inline-block;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        /* Interactive Objects Info */
+        .object-info {
+            position: absolute;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 15px 20px;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 3000;
+        }
+
+        .object-info.visible {
+            opacity: 1;
+        }
+
+        .object-title {
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            color: var(--primary-neon);
+            margin-bottom: 5px;
+        }
+
+        .object-description {
+            font-size: 12px;
+            color: var(--text-secondary);
+            max-width: 200px;
+        }
+
+        /* Instructions */
+        .instructions {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            opacity: 0.7;
+            animation: instructionFade 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes instructionFade {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        .instruction-text {
+            font-family: 'Orbitron', monospace;
+            color: var(--primary-neon);
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        /* Fallback Mode */
+        .fallback-mode {
+            display: none;
+            padding: 50px;
+            text-align: center;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fallback-mode.active {
+            display: flex;
+        }
+
+        .fallback-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            color: var(--primary-neon);
+            margin-bottom: 30px;
+        }
+
+        .fallback-content {
+            max-width: 800px;
+            background: var(--glass-bg);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .nav-button {
+            background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon));
+            color: var(--bg-dark);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            margin: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .player-stats,
+            .quest-log {
+                position: relative;
+                margin: 10px;
+                min-width: auto;
+                width: calc(100% - 20px);
+            }
+
+            .inventory {
+                position: relative;
+                margin: 10px;
+                width: calc(100% - 20px);
+            }
+
+            .loading-title {
+                font-size: 2rem;
+            }
+
+            .loading-bar {
+                width: 300px;
+            }
+
+            .game-hud {
+                position: static;
+                display: flex;
+                flex-direction: column;
+                height: auto;
+                pointer-events: auto;
+            }
+
+            #three-container {
+                height: 50vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-title">CHANDAN.EXE</div>
+        <div class="loading-subtitle">Initializing Interactive Portfolio Experience...</div>
+        <div class="loading-bar">
+            <div class="loading-progress" id="loadingProgress"></div>
+        </div>
+        <div class="loading-text" id="loadingText">Loading assets...</div>
+        <button class="start-button" id="startButton">ENTER GAME</button>
+    </div>
+
+    <!-- Game Container -->
+    <div class="game-container" id="gameContainer">
+        <!-- 3D Scene -->
+        <div id="three-container"></div>
+
+        <!-- Gaming HUD -->
+        <div class="game-hud">
+            <!-- Player Stats -->
+            <div class="player-stats">
+                <div class="player-name">CHANDAN GOWDA K S</div>
+                <div class="level-info">
+                    <div class="level-badge">LVL 25</div>
+                    <div class="xp-bar">
+                        <div class="xp-progress"></div>
+                    </div>
+                </div>
+                <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 10px;">
+                    Software Engineer | 4+ Years XP
+                </div>
+                <div class="skill-preview">
+                    <div class="skill-icon" title="Java">☕</div>
+                    <div class="skill-icon" title="Python">🐍</div>
+                    <div class="skill-icon" title="AWS">☁️</div>
+                    <div class="skill-icon" title="React">⚛️</div>
+                    <div class="skill-icon" title="AI/ML">🧠</div>
+                    <div class="skill-icon" title="Docker">🐳</div>
+                </div>
+            </div>
+
+            <!-- Quest Log -->
+            <div class="quest-log">
+                <div class="quest-title">🎯 ACTIVE QUESTS</div>
+                <div class="quest-item" onclick="showQuestDetails('degree')">
+                    <div class="quest-name">🎓 Complete MS Degree</div>
+                    <div class="quest-description">Maintain 4.0 CGPA at Northeastern University</div>
+                    <div class="quest-reward">Reward: +1000 XP, Advanced AI Skills</div>
+                </div>
+                <div class="quest-item" onclick="showQuestDetails('coop')">
+                    <div class="quest-name">💼 Secure Spring 2026 Co-op</div>
+                    <div class="quest-description">Land software engineering position at top tech company</div>
+                    <div class="quest-reward">Reward: +2000 XP, Career Advancement</div>
+                </div>
+                <div class="quest-item" onclick="showQuestDetails('tech')">
+                    <div class="quest-name">🚀 Master New Technologies</div>
+                    <div class="quest-description">Explore cutting-edge frameworks and tools</div>
+                    <div class="quest-reward">Reward: +500 XP per technology</div>
+                </div>
+            </div>
+
+            <!-- Inventory -->
+            <div class="inventory">
+                <div class="inventory-title">⚡ POWER-UPS</div>
+                <div class="inventory-grid">
+                    <div class="inventory-slot filled" title="Java Mastery" onclick="showSkillDetail('java')">☕</div>
+                    <div class="inventory-slot filled" title="Python Expert" onclick="showSkillDetail('python')">🐍</div>
+                    <div class="inventory-slot filled" title="AWS Certified" onclick="showSkillDetail('aws')">☁️</div>
+                    <div class="inventory-slot filled" title="ML Engineer" onclick="showSkillDetail('ml')">🤖</div>
+                    <div class="inventory-slot filled" title="Full-Stack" onclick="showSkillDetail('fullstack')">🌐</div>
+                    <div class="inventory-slot filled" title="Team Leader" onclick="showSkillDetail('leadership')">👥</div>
+                    <div class="inventory-slot" title="Coming Soon..." onclick="showComingSoon()">🔒</div>
+                    <div class="inventory-slot" title="Coming Soon..." onclick="showComingSoon()">🔒</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions">
+            <div class="instruction-text">🎮 Click on objects to interact</div>
+            <div class="instruction-text">⌨️ Use keyboard: P=Projects, S=Skills, A=Achievements</div>
+        </div>
+    </div>
+
+    <!-- Fallback Mode -->
+    <div class="fallback-mode" id="fallbackMode">
+        <div class="fallback-title">🎮 PORTFOLIO GAME MODE</div>
+        <div class="fallback-content">
+            <h2 style="color: var(--primary-neon); margin-bottom: 20px;">Interactive Experience</h2>
+            <p style="margin-bottom: 30px; color: var(--text-secondary);">
+                Welcome to my gamified portfolio! Navigate through different sections to discover my skills, projects, and experience.
+            </p>
+            <div>
+                <button class="nav-button" onclick="showSection('projects')">🚀 PROJECTS</button>
+                <button class="nav-button" onclick="showSection('skills')">⚡ SKILLS</button>
+                <button class="nav-button" onclick="showSection('experience')">📚 EXPERIENCE</button>
+                <button class="nav-button" onclick="showSection('achievements')">🏆 ACHIEVEMENTS</button>
+            </div>
+            <div id="sectionContent" style="margin-top: 30px; min-height: 300px;"></div>
+        </div>
+    </div>
+
+    <!-- Achievement Notification -->
+    <div class="achievement" id="achievement">
+        <span class="achievement-icon">🏆</span>
+        <span id="achievementText">Achievement Unlocked!</span>
+    </div>
+
+    <!-- Modal System -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-title" id="modalTitle">Portfolio Details</div>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // Game State
+        let gameState = {
+            scene: null,
+            camera: null,
+            renderer: null,
+            interactiveObjects: [],
+            currentLevel: 25,
+            xp: 75,
+            achievements: [],
+            isInitialized: false
+        };
+
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        let mouseX = 0, mouseY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+        });
+
+        // Loading Simulation
+        function simulateLoading() {
+            const loadingProgress = document.getElementById('loadingProgress');
+            const loadingText = document.getElementById('loadingText');
+            const startButton = document.getElementById('startButton');
+            
+            const loadingSteps = [
+                "Initializing 3D environment...",
+                "Loading interactive objects...",
+                "Compiling shaders...",
+                "Setting up game mechanics...",
+                "Loading portfolio data...",
+                "Optimizing performance...",
+                "Ready to start!"
+            ];
+
+            let progress = 0;
+            let stepIndex = 0;
+
+            const loadingInterval = setInterval(() => {
+                progress += Math.random() * 15 + 5;
+                if (progress > 100) progress = 100;
+                
+                loadingProgress.style.width = progress + '%';
+                
+                if (stepIndex < loadingSteps.length - 1 && progress > (stepIndex + 1) * (100 / loadingSteps.length)) {
+                    stepIndex++;
+                }
+                
+                loadingText.textContent = loadingSteps[stepIndex];
+                
+                if (progress >= 100) {
+                    clearInterval(loadingInterval);
+                    setTimeout(() => {
+                        startButton.classList.add('visible');
+                    }, 500);
+                }
+            }, 200);
+        }
+
+        // Initialize 3D Scene
+        function initThreeJS() {
+            try {
+                const container = document.getElementById('three-container');
+                
+                // Scene setup
+                gameState.scene = new THREE.Scene();
+                gameState.scene.fog = new THREE.Fog(0x0a0a0f, 10, 50);
+                
+                // Camera setup
+                gameState.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                gameState.camera.position.set(0, 5, 10);
+                
+                // Renderer setup
+                gameState.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+                gameState.renderer.setSize(window.innerWidth, window.innerHeight);
+                gameState.renderer.setClearColor(0x0a0a0f, 1);
+                gameState.renderer.shadowMap.enabled = true;
+                gameState.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+                container.appendChild(gameState.renderer.domElement);
+
+                createOfficeEnvironment();
+                createLighting();
+                addInteractiveObjects();
+                
+                gameState.isInitialized = true;
+                animate();
+                
+            } catch (error) {
+                console.error('Error initializing 3D scene:', error);
+                activateFallbackMode();
+            }
+        }
+
+        // Create Office Environment
+        function createOfficeEnvironment() {
+            // Floor
+            const floorGeometry = new THREE.PlaneGeometry(30, 30);
+            const floorMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0x1a1a2e,
+                metalness: 0.1,
+                roughness: 0.8
+            });
+            const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+            floor.rotation.x = -Math.PI / 2;
+            floor.receiveShadow = true;
+            gameState.scene.add(floor);
+
+            // Desk
+            const deskGeometry = new THREE.BoxGeometry(6, 1.5, 3);
+            const deskMaterial = new THREE.MeshStandardMaterial({ color: 0x2c3e50 });
+            const desk = new THREE.Mesh(deskGeometry, deskMaterial);
+            desk.position.set(0, 0.75, 0);
+            desk.castShadow = true;
+            gameState.scene.add(desk);
+
+            // Interactive Objects
+            createInteractiveObjects();
+        }
+
+        function createInteractiveObjects() {
+            // Monitor (Projects Display)
+            const monitorGeometry = new THREE.BoxGeometry(4, 2.5, 0.2);
+            const monitorMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0x000000,
+                emissive: 0x001133
+            });
+            const monitor = new THREE.Mesh(monitorGeometry, monitorMaterial);
+            monitor.position.set(0, 3, -1);
+            monitor.userData = { 
+                type: 'interactive', 
+                action: 'showProjects',
+                name: 'Projects Monitor',
+                description: 'Click to view my featured projects'
+            };
+            gameState.scene.add(monitor);
+            gameState.interactiveObjects.push(monitor);
+
+            // Laptop (Skills)
+            const laptopGeometry = new THREE.BoxGeometry(2, 0.1, 1.5);
+            const laptopMaterial = new THREE.MeshStandardMaterial({ color: 0x34495e });
+            const laptop = new THREE.Mesh(laptopGeometry, laptopMaterial);
+            laptop.position.set(-2, 1.6, 0.5);
+            laptop.userData = { 
+                type: 'interactive', 
+                action: 'showSkills',
+                name: 'Skills Terminal',
+                description: 'Access my technical skill tree'
+            };
+            gameState.scene.add(laptop);
+            gameState.interactiveObjects.push(laptop);
+
+            // Achievement Trophy
+            const trophyGeometry = new THREE.ConeGeometry(0.3, 1, 8);
+            const trophyMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0xffd700,
+                emissive: 0x332200
+            });
+            const trophy = new THREE.Mesh(trophyGeometry, trophyMaterial);
+            trophy.position.set(2, 2.5, 0.5);
+            trophy.userData = { 
+                type: 'interactive', 
+                action: 'showAchievements',
+                name: 'Achievement Gallery',
+                description: 'View my professional achievements'
+            };
+            gameState.scene.add(trophy);
+            gameState.interactiveObjects.push(trophy);
+
+            // Experience Book
+            const bookGeometry = new THREE.BoxGeometry(0.3, 1.5, 0.8);
+            const bookMaterial = new THREE.MeshStandardMaterial({ color: 0x8b4513 });
+            const book = new THREE.Mesh(bookGeometry, bookMaterial);
+            book.position.set(-1, 2.25, -0.5);
+            book.userData = { 
+                type: 'interactive', 
+                action: 'showExperience',
+                name: 'Experience Archive',
+                description: 'Browse my work experience'
+            };
+            gameState.scene.add(book);
+            gameState.interactiveObjects.push(book);
+        }
+
+        // Lighting
+        function createLighting() {
+            // Ambient light
+            const ambientLight = new THREE.AmbientLight(0x404040, 0.3);
+            gameState.scene.add(ambientLight);
+
+            // Main light
+            const mainLight = new THREE.DirectionalLight(0x00ffff, 0.8);
+            mainLight.position.set(5, 10, 5);
+            mainLight.castShadow = true;
+            gameState.scene.add(mainLight);
+
+            // Accent lights
+            const accentLight1 = new THREE.PointLight(0xff0080, 0.5, 10);
+            accentLight1.position.set(-5, 3, 3);
+            gameState.scene.add(accentLight1);
+
+            const accentLight2 = new THREE.PointLight(0x80ff00, 0.5, 10);
+            accentLight2.position.set(5, 3, -3);
+            gameState.scene.add(accentLight2);
+        }
+
+        // Add Interactive Objects Effects
+        function addInteractiveObjects() {
+            gameState.interactiveObjects.forEach(obj => {
+                if (obj.geometry) {
+                    try {
+                        const edges = new THREE.EdgesGeometry(obj.geometry);
+                        const lineMaterial = new THREE.LineBasicMaterial({ 
+                            color: 0x00ffff,
+                            transparent: true,
+                            opacity: 0.5
+                        });
+                        const wireframe = new THREE.LineSegments(edges, lineMaterial);
+                        obj.add(wireframe);
+                        
+                        // Add pulsing animation
+                        obj.userData.animate = function() {
+                            const time = Date.now() * 0.005;
+                            wireframe.material.opacity = 0.3 + Math.sin(time) * 0.2;
+                            obj.rotation.y += 0.001;
+                        };
+                    } catch (error) {
+                        console.log('Could not add wireframe to object:', error);
+                    }
+                }
+            });
+        }
+
+        // Interaction Functions
+        function showQuestDetails(questType) {
+            const questContent = {
+                degree: "🎓 Currently maintaining perfect 4.0 CGPA at Northeastern University, focusing on AI and distributed systems.",
+                coop: "💼 Actively seeking Spring 2026 co-op opportunities at top tech companies like Google, Meta, Amazon.",
+                tech: "🚀 Currently learning Kubernetes, advanced React patterns, and GraphQL for enhanced full-stack capabilities."
+            };
+            
+            showAchievement("Quest Details!", questContent[questType] || "Quest information updated!");
+        }
+
+        function showSkillDetail(skill) {
+            const skillContent = {
+                java: "☕ Java Mastery - 4+ years enterprise experience with Spring Boot and Micronaut",
+                python: "🐍 Python Expert - Advanced ML, data analysis, and backend development",
+                aws: "☁️ AWS Certified - Cloud architecture and serverless development",
+                ml: "🤖 ML Engineer - TensorFlow, PyTorch, and published research",
+                fullstack: "🌐 Full-Stack - Frontend and backend development across multiple frameworks",
+                leadership: "👥 Team Leader - Cross-functional collaboration and mentoring experience"
+            };
+            
+            showAchievement("Skill Info!", skillContent[skill] || "Skill details loaded!");
+        }
+
+        function showComingSoon() {
+            showAchievement("🔒 Locked!", "This skill will be unlocked in future updates!");
+        }
+
+        // Modal Content
+        const modalContent = {
+            showProjects: {
+                title: "🚀 FEATURED PROJECTS",
+                content: `
+                    <div style="margin-bottom: 30px;">
+                        <h3 style="color: var(--primary-neon); margin-bottom: 15px;">⚔️ Epic Quests Completed</h3>
+                        <div style="display: grid; gap: 20px;">
+                            <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; border-left: 4px solid var(--tertiary-neon);">
+                                <h4 style="color: var(--primary-neon);">🏥 AI Medical Diagnosis System</h4>
+                                <p style="margin: 10px 0; color: var(--text-secondary);">Boss Battle: Healthcare AI Challenge - Defeated with 94% accuracy!</p>
+                                <div style="margin-top: 10px;">
+                                    <span style="background: rgba(0,255,255,0.2); padding: 4px 12px; border-radius: 15px; font-size: 12px; margin-right: 8px;">Python</span>
+                                    <span style="background: rgba(0,255,255,0.2); padding: 4px 12px; border-radius: 15px; font-size: 12px; margin-right: 8px;">NLP</span>
+                                    <span style="background: rgba(0,255,255,0.2); padding: 4px 12px; border-radius: 15px; font-size: 12px;">TensorFlow</span>
+                                </div>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; border-left: 4px solid var(--secondary-neon);">
+                                <h4 style="color: var(--primary-neon);">🚢 Maritime Logistics Platform</h4>
+                                <p style="margin: 10px 0; color: var(--text-secondary);">Raid Completed: Port Management System with Dijkstra algorithms!</p>
+                                <a href="https://github.com/virtual457/Port-Management-System" target="_blank" style="color: var(--tertiary-neon); text-decoration: none;">🔗 View Source Code</a>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; border-left: 4px solid var(--warning-neon);">
+                                <h4 style="color: var(--primary-neon);">👁️ Neural Face Recognition</h4>
+                                <p style="margin: 10px 0; color: var(--text-secondary);">Special Mission: 90% accuracy in computer vision challenges!</p>
+                                <a href="https://github.com/virtual457/Recognition-and-Validation-of-Faces-using-Machine-Learning-and-Image-Processing" target="_blank" style="color: var(--tertiary-neon); text-decoration: none;">🔗 View Source Code</a>
+                            </div>
+                        </div>
+                        <div style="text-align: center; margin-top: 30px;">
+                            <a href="https://github.com/virtual457" target="_blank" style="background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon)); color: var(--bg-dark); padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: 700;">
+                                🎮 VIEW ALL QUESTS (GitHub)
+                            </a>
+                        </div>
+                    </div>
+                `
+            },
+            showSkills: {
+                title: "⚡ SKILL TREE",
+                content: `
+                    <div style="margin-bottom: 30px;">
+                        <h3 style="color: var(--primary-neon); margin-bottom: 20px;">🌟 Mastered Abilities</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                            <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 3rem; margin-bottom: 10px;">☕</div>
+                                <h4 style="color: var(--primary-neon);">Java Master</h4>
+                                <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; margin: 10px 0;">
+                                    <div style="width: 95%; height: 100%; background: linear-gradient(90deg, var(--primary-neon), var(--secondary-neon)); border-radius: 4px;"></div>
+                                </div>
+                                <div style="font-size: 12px; color: var(--text-secondary);">Level 95/100</div>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 3rem; margin-bottom: 10px;">🐍</div>
+                                <h4 style="color: var(--primary-neon);">Python Wizard</h4>
+                                <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; margin: 10px 0;">
+                                    <div style="width: 92%; height: 100%; background: linear-gradient(90deg, var(--primary-neon), var(--secondary-neon)); border-radius: 4px;"></div>
+                                </div>
+                                <div style="font-size: 12px; color: var(--text-secondary);">Level 92/100</div>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 3rem; margin-bottom: 10px;">☁️</div>
+                                <h4 style="color: var(--primary-neon);">AWS Architect</h4>
+                                <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; margin: 10px 0;">
+                                    <div style="width: 88%; height: 100%; background: linear-gradient(90deg, var(--primary-neon), var(--secondary-neon)); border-radius: 4px;"></div>
+                                </div>
+                                <div style="font-size: 12px; color: var(--text-secondary);">Level 88/100</div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            showExperience: {
+                title: "📚 EXPERIENCE LOG",
+                content: `
+                    <div style="margin-bottom: 30px;">
+                        <h3 style="color: var(--primary-neon); margin-bottom: 20px;">⚔️ Battle History</h3>
+                        <div style="space-y: 20px;">
+                            <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 12px; border-left: 4px solid var(--primary-neon); margin-bottom: 20px;">
+                                <h4 style="color: var(--primary-neon); margin-bottom: 10px;">🏛️ LSEG - Senior Software Engineer</h4>
+                                <div style="color: var(--secondary-neon); margin-bottom: 15px;">Aug 2022 - Dec 2024 | Final Boss Battle</div>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="margin-bottom: 8px; color: var(--text-secondary);">⚡ Defeated 7.5M+ XML Dragons with 40 records/sec spell casting</li>
+                                    <li style="margin-bottom: 8px; color: var(--text-secondary);">🛡️ Enhanced security shields, reducing incidents by 50%</li>
+                                    <li style="margin-bottom: 8px; color: var(--text-secondary);">⚔️ Built microservices army with Java Micronaut weapons</li>
+                                </ul>
+                                <div style="margin-top: 15px; text-align: center; color: var(--tertiary-neon);">
+                                    <strong>+2500 XP Gained | Leadership Skills Unlocked</strong>
+                                </div>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 12px; border-left: 4px solid var(--secondary-neon);">
+                                <h4 style="color: var(--primary-neon); margin-bottom: 10px;">🤖 Infosys - Senior Systems Engineer</h4>
+                                <div style="color: var(--secondary-neon); margin-bottom: 15px;">Oct 2020 - Aug 2022 | Automation Guild</div>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="margin-bottom: 8px; color: var(--text-secondary);">🔧 Crafted RPA bots with OCR magic abilities</li>
+                                    <li style="margin-bottom: 8px; color: var(--text-secondary);">⚡ Speed boost: Improved processing by 3X multiplier</li>
+                                </ul>
+                                <div style="margin-top: 15px; text-align: center; color: var(--tertiary-neon);">
+                                    <strong>+1800 XP Gained | Automation Mastery Unlocked</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            showAchievements: {
+                title: "🏆 ACHIEVEMENT GALLERY",
+                content: `
+                    <div style="margin-bottom: 30px;">
+                        <h3 style="color: var(--primary-neon); margin-bottom: 20px;">🎖️ Legendary Achievements Unlocked</h3>
+                        <div style="display: grid; gap: 15px;">
+                            <div style="background: linear-gradient(45deg, rgba(255,215,0,0.1), rgba(255,140,0,0.1)); padding: 20px; border-radius: 12px; border: 2px solid #ffd700;">
+                                <h4 style="color: #ffd700; margin-bottom: 10px;">📜 Research Master</h4>
+                                <p style="color: var(--text-secondary); margin-bottom: 10px;">Published IEEE research paper - Rare achievement unlocked!</p>
+                                <div style="color: var(--tertiary-neon); font-size: 12px;">+500 XP • Academic Prestige +1</div>
+                            </div>
+                            <div style="background: linear-gradient(45deg, rgba(255,69,0,0.1), rgba(255,140,0,0.1)); padding: 20px; border-radius: 12px; border: 2px solid #ff4500;">
+                                <h4 style="color: #ff6347; margin-bottom: 10px;">☁️ Cloud Warrior</h4>
+                                <p style="color: var(--text-secondary); margin-bottom: 10px;">AWS Certified Cloud Practitioner - Official recognition!</p>
+                                <div style="color: var(--tertiary-neon); font-size: 12px;">+300 XP • Cloud Mastery +1</div>
+                            </div>
+                            <div style="background: linear-gradient(45deg, rgba(0,191,255,0.1), rgba(30,144,255,0.1)); padding: 20px; border-radius: 12px; border: 2px solid #00bfff;">
+                                <h4 style="color: #00bfff; margin-bottom: 10px;">🤖 Automation Expert</h4>
+                                <p style="color: var(--text-secondary); margin-bottom: 10px;">RPA Professional Certification - Bot Commander achieved!</p>
+                                <div style="color: var(--tertiary-neon); font-size: 12px;">+250 XP • Automation Skills +1</div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        // Action Handlers
+        function executeAction(action) {
+            if (modalContent[action]) {
+                openModal(modalContent[action].title, modalContent[action].content);
+            }
+        }
+
+        function openModal(title, content) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalContent').innerHTML = content;
+            document.getElementById('projectModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').classList.remove('active');
+        }
+
+        function showAchievement(title, description) {
+            const achievement = document.getElementById('achievement');
+            const achievementText = document.getElementById('achievementText');
+            achievementText.textContent = title;
+            achievement.classList.add('show');
+            
+            setTimeout(() => {
+                achievement.classList.remove('show');
+            }, 3000);
+        }
+
+        // Fallback Mode
+        function activateFallbackMode() {
+            document.getElementById('gameContainer').style.display = 'none';
+            document.getElementById('fallbackMode').classList.add('active');
+        }
+
+        function showSection(section) {
+            const content = document.getElementById('sectionContent');
+            const sectionData = modalContent['show' + section.charAt(0).toUpperCase() + section.slice(1)];
+            
+            if (sectionData) {
+                content.innerHTML = sectionData.content;
+                showAchievement("Section Loaded!", `${section.toUpperCase()} information accessed!`);
+            }
+        }
+
+        // Raycaster for interactions
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        let hoveredObject = null;
+
+        function onMouseMove(event) {
+            if (!gameState.isInitialized) return;
+            
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+            if (gameState.camera && gameState.interactiveObjects.length > 0) {
+                try {
+                    raycaster.setFromCamera(mouse, gameState.camera);
+                    const intersects = raycaster.intersectObjects(gameState.interactiveObjects);
+
+                    cursor.classList.remove('interactive');
+                    const objectInfo = document.querySelector('.object-info');
+                    if (objectInfo) objectInfo.remove();
+
+                    if (intersects.length > 0) {
+                        const object = intersects[0].object;
+                        if (object.userData && object.userData.type === 'interactive') {
+                            cursor.classList.add('interactive');
+                            hoveredObject = object;
+                            showObjectInfo(object, event.clientX, event.clientY);
+                        }
+                    } else {
+                        hoveredObject = null;
+                    }
+                } catch (error) {
+                    console.log('Raycasting error:', error);
+                }
+            }
+        }
+
+        function onMouseClick() {
+            if (hoveredObject && hoveredObject.userData && hoveredObject.userData.action) {
+                executeAction(hoveredObject.userData.action);
+                showAchievement("Interaction Master!", "Successfully interacted with portfolio element");
+            }
+        }
+
+        function showObjectInfo(object, x, y) {
+            const objectInfo = document.createElement('div');
+            objectInfo.className = 'object-info visible';
+            objectInfo.innerHTML = `
+                <div class="object-title">${object.userData.name || 'Interactive Object'}</div>
+                <div class="object-description">${object.userData.description || 'Click to interact'}</div>
+            `;
+            
+            objectInfo.style.left = x + 20 + 'px';
+            objectInfo.style.top = y - 60 + 'px';
+            document.body.appendChild(objectInfo);
+            
+            setTimeout(() => {
+                if (objectInfo.parentNode) {
+                    objectInfo.remove();
+                }
+            }, 2000);
+        }
+
+        // Animation Loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            if (gameState.isInitialized && gameState.scene && gameState.camera && gameState.renderer) {
+                try {
+                    // Animate interactive objects
+                    gameState.interactiveObjects.forEach(obj => {
+                        if (obj.userData && obj.userData.animate) {
+                            obj.userData.animate();
+                        }
+                    });
+
+                    // Camera gentle movement
+                    gameState.camera.position.x += (mouseX * 0.005 - gameState.camera.position.x) * 0.02;
+                    gameState.camera.position.y += (5 - mouseY * 0.005 - gameState.camera.position.y) * 0.02;
+                    gameState.camera.lookAt(0, 2, 0);
+
+                    gameState.renderer.render(gameState.scene, gameState.camera);
+                } catch (error) {
+                    console.log('Animation error:', error);
+                }
+            }
+        }
+
+        // Event Listeners
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+            onMouseMove(e);
+        });
+        
+        document.addEventListener('click', onMouseClick);
+
+        // Window resize
+        window.addEventListener('resize', () => {
+            if (gameState.camera && gameState.renderer) {
+                gameState.camera.aspect = window.innerWidth / window.innerHeight;
+                gameState.camera.updateProjectionMatrix();
+                gameState.renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+        });
+
+        // Start Game
+        document.getElementById('startButton').addEventListener('click', () => {
+            const loadingScreen = document.getElementById('loadingScreen');
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+                try {
+                    initThreeJS();
+                    showAchievement("Welcome Explorer!", "Portfolio game environment loaded successfully");
+                } catch (error) {
+                    console.error('Error initializing 3D scene:', error);
+                    activateFallbackMode();
+                }
+            }, 500);
+        });
+
+        // Initialize
+        window.addEventListener('load', () => {
+            try {
+                simulateLoading();
+            } catch (error) {
+                console.error('Error during initialization:', error);
+                document.getElementById('startButton').classList.add('visible');
+            }
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            switch(e.key.toLowerCase()) {
+                case 'p':
+                    executeAction('showProjects');
+                    break;
+                case 's':
+                    executeAction('showSkills');
+                    break;
+                case 'a':
+                    executeAction('showAchievements');
+                    break;
+                case 'e':
+                    executeAction('showExperience');
+                    break;
+                case 'escape':
+                    closeModal();
+                    break;
+            }
+        });
+
+        // Click outside modal to close
+        document.getElementById('projectModal').addEventListener('click', (e) => {
+            if (e.target.id === 'projectModal') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
