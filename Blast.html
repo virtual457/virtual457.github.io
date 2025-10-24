@@ -1858,6 +1858,232 @@
                 grid-template-columns: repeat(3, 1fr);
             }
         }
+
+        
+/* Contact Section Styles */
+.contact-section {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-icons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 48px;
+}
+
+.contact-icon-link {
+    width: 100px;
+    height: 100px;
+    background: var(--bg-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    border: 2px solid var(--border-light);
+}
+
+.contact-icon-link::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(135deg, var(--google-blue), var(--google-red), var(--google-yellow), var(--google-green));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.contact-icon-link:hover::before {
+    opacity: 1;
+}
+
+.contact-icon-link:hover {
+    transform: translateY(-8px) scale(1.1);
+    background: white;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    border-color: transparent;
+}
+
+.contact-icon-link .material-icons {
+    font-size: 48px;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.contact-icon-link:nth-child(1):hover .material-icons {
+    color: var(--google-blue);
+}
+
+.contact-icon-link:nth-child(2):hover .material-icons {
+    color: #0077b5; /* LinkedIn Blue */
+}
+
+.contact-icon-link:nth-child(3):hover .material-icons {
+    color: #333333; /* GitHub Dark */
+}
+
+/* Tooltip on hover */
+.contact-icon-link::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(32, 33, 36, 0.95);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.contact-icon-link:hover::after {
+    opacity: 1;
+    bottom: -45px;
+}
+
+/* Footer Styles */
+.footer {
+    background: var(--bg-light);
+    padding: 60px 20px 32px;
+    margin-top: 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-left {
+    text-align: left;
+}
+
+.footer-brand {
+    font-family: 'Product Sans', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.footer-tagline {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.footer-links {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.footer-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.footer-link:hover {
+    color: var(--google-blue);
+}
+
+.footer-bottom {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-light);
+    text-align: center;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-copyright {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.footer-heart {
+    color: var(--google-red);
+    display: inline-block;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    10%, 30% { transform: scale(1.1); }
+    20%, 40% { transform: scale(1); }
+}
+
+.footer-color-dots {
+    display: inline-flex;
+    gap: 6px;
+    margin-left: 8px;
+}
+
+.color-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-blue { background: var(--google-blue); }
+.dot-red { background: var(--google-red); }
+.dot-yellow { background: var(--google-yellow); }
+.dot-green { background: var(--google-green); }
+
+@media (max-width: 768px) {
+    .contact-icons-container {
+        gap: 28px;
+    }
+
+    .contact-icon-link {
+        width: 85px;
+        height: 85px;
+    }
+
+    .contact-icon-link .material-icons {
+        font-size: 42px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-left {
+        text-align: center;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
     </style>
 </head>
 <body>
@@ -2681,12 +2907,61 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--bg-white);">
-        <div style="text-align: center; max-width: 800px; padding: 80px 20px;">
-            <h2 style="font-family: 'Product Sans', sans-serif; font-size: 3rem; color: var(--text-primary); margin-bottom: 20px;">Let's Connect</h2>
-            <p style="font-size: 1.2rem; color: var(--text-secondary); line-height: 1.6;">Email, LinkedIn, GitHub links go here</p>
+<section id="contact" class="section" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--bg-white); padding: 80px 20px;">
+    <div class="contact-section">
+        <h2 style="font-family: 'Product Sans', sans-serif; font-size: clamp(2.5rem, 8vw, 4rem); color: var(--text-primary); margin-bottom: 20px; font-weight: 700;">Let's Connect</h2>
+        <p style="font-size: clamp(1rem, 3vw, 1.3rem); color: var(--text-secondary); line-height: 1.6; max-width: 600px; margin: 0 auto;">
+            Open for 2026 co-op opportunities and exciting projects. 
+            Feel free to reach out through any of these channels!
+        </p>
+
+        <div class="contact-icons-container">
+            <a href="mailto:chandan.keelara@gmail.com" class="contact-icon-link" data-label="Email Me" target="_blank">
+                <span class="material-icons">email</span>
+            </a>
+            <a href="https://www.linkedin.com/in/chandan-gowda-k-s-765194186/" class="contact-icon-link" data-label="LinkedIn" target="_blank">
+                <span class="material-icons">business</span>
+            </a>
+            <a href="https://github.com/virtual457" class="contact-icon-link" data-label="GitHub" target="_blank">
+                <span class="material-icons">code</span>
+            </a>
         </div>
-    </section>
+    </div>
+</section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <div class="footer-brand">Chandan</div>
+                <div class="footer-tagline">Software Engineer • MS CS Student</div>
+            </div>
+            <div class="footer-links">
+                <a href="#home" class="footer-link">
+                    <span class="material-icons" style="font-size: 18px;">home</span>
+                    Home
+                </a>
+                <a href="#projects" class="footer-link">
+                    <span class="material-icons" style="font-size: 18px;">work</span>
+                    Projects
+                </a>
+                <a href="#contact" class="footer-link">
+                    <span class="material-icons" style="font-size: 18px;">email</span>
+                    Contact
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copyright">
+                © 2025 Chandan Gowda K S. Built with <span class="footer-heart">♥</span> using HTML, CSS & JavaScript
+                <span class="footer-color-dots">
+                    <span class="color-dot dot-blue"></span>
+                    <span class="color-dot dot-red"></span>
+                    <span class="color-dot dot-yellow"></span>
+                    <span class="color-dot dot-green"></span>
+                </span>
+            </p>
+        </div>
+    </footer>
 
     <script>
         function createDots() {
