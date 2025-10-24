@@ -1184,43 +1184,93 @@
     <!-- Projects Section -->
     <section id="projects" class="section projects fade-in">
         <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
+            <h2 class="section-title"> Projects Showcase</h2>
             <p class="section-subtitle">
-                A curated selection of impactful projects demonstrating technical expertise and innovation
+                Top 6 flagship projects demonstrating mastery across Deep Reinforcement Learning, Enterprise Java Architecture, Cloud-Native Platforms, Advanced Database Systems, Computer Vision, and Big Data Analytics
             </p>
             <div class="projects-grid">
-                <!-- Project 1 -->
+                <!-- Project 1: Dino Game Deep RL - LEGENDARY -->
                 <div class="project-card">
                     <div class="project-header">
                         <div class="project-icon">
-                            <i class="fas fa-stethoscope"></i>
+                            <i class="fas fa-gamepad"></i>
                         </div>
-                        <h3 class="project-title">AI Medical Diagnosis System</h3>
+                        <h3 class="project-title">Dino Game Deep RL Agent</h3>
                     </div>
                     <p class="project-description">
-                        NLP-powered system providing probabilistic disease prediction based on symptom analysis. 
-                        Research published in IEEE demonstrating 94% accuracy in medical diagnosis using advanced machine learning algorithms.
+                        Autonomous Chrome Dino player using Double DQN with ResNet architecture (1.5M parameters). Implemented 4-frame stacking for temporal information, balanced experience replay (50/50 crash/alive sampling), and automated training pipeline alternating offline learning and online collection. Achieved real-time inference at 16.67 FPS with sophisticated reward engineering accounting for temporal causality in crash scenarios.
                     </p>
                     <div class="tech-stack">
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">Deep RL</span>
+                        <span class="tech-tag">ResNet</span>
+                        <span class="tech-tag">Computer Vision</span>
+                        <span class="tech-tag">OpenCV</span>
                         <span class="tech-tag">Python</span>
-                        <span class="tech-tag">NLP</span>
-                        <span class="tech-tag">Machine Learning</span>
-                        <span class="tech-tag">TensorFlow</span>
-                        <span class="tech-tag">GCP</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/virtual457/dino-game" class="project-link" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-github"></i>
-                            Source Code
-                        </a>
-                        <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-external-link-alt"></i>
-                            Research Paper
+                            View Source Code
                         </a>
                     </div>
                 </div>
 
-                <!-- Project 2 -->
+                <!-- Project 2: Calendly Clone - LEGENDARY -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3 class="project-title">Calendly Clone (Enterprise Java)</h3>
+                    </div>
+                    <p class="project-description">
+                        Enterprise-grade calendar application built with Test-Driven Development achieving 98% line coverage and 95% mutation coverage. Implements 6+ design patterns (Command, Factory, Adapter, Builder, Observer, Strategy) with MVC architecture, multiple UIs (GUI, Console, Headless), and comprehensive JUnit test suites across 31 test classes. Features clean code practices, SOLID principles, interface segregation, and production-ready error handling.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Java 11</span>
+                        <span class="tech-tag">Maven</span>
+                        <span class="tech-tag">JUnit</span>
+                        <span class="tech-tag">Design Patterns</span>
+                        <span class="tech-tag">TDD</span>
+                        <span class="tech-tag">MVC</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/virtual457/Calendly" class="project-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                            View Source Code
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3: Orion Platform - LEGENDARY -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fab fa-docker"></i>
+                        </div>
+                        <h3 class="project-title">Orion Platform (Kubernetes Operator)</h3>
+                    </div>
+                    <p class="project-description">
+                        Cloud-native developer platform built with Go implementing Custom Resource Definitions (CRDs) and controller-runtime for Kubernetes. Features declarative application deployment with environment-aware infrastructure provisioning (PostgreSQL, Redis, MinIO), event-driven reconciliation loops, and automated lifecycle management. Demonstrates platform engineering expertise with service discovery, configuration injection, and ownership-based resource cleanup.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Go</span>
+                        <span class="tech-tag">Kubernetes</span>
+                        <span class="tech-tag">CRDs</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">Platform Engineering</span>
+                        <span class="tech-tag">Operators</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/virtual457/Orion-platform" class="project-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                            View Source Code
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 4: Port Management System - LEGENDARY -->
                 <div class="project-card">
                     <div class="project-header">
                         <div class="project-icon">
@@ -1229,91 +1279,52 @@
                         <h3 class="project-title">Maritime Logistics Platform</h3>
                     </div>
                     <p class="project-description">
-                        Advanced port management system with Django and MySQL, featuring Dijkstra-based pathfinding algorithms 
-                        implemented in SQL and complex stored procedures for optimal route planning.
+                        Advanced database-driven port management system implementing Dijkstra-like pathfinding algorithms in SQL. Features 50+ stored procedures, multi-role user management (Admin, Shipowner, Customer, Manager), real-time berth availability with conflict detection, and complex connected booking management with transaction guarantees. Demonstrates expertise in normalized schema design, spatial data management, and complex business logic implementation in database layer.
                     </p>
                     <div class="tech-stack">
-                        <span class="tech-tag">Django</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">SQL Algorithms</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">HTML/CSS</span>
+                        <span class="tech-tag">Django 4.2+</span>
+                        <span class="tech-tag">MySQL 8.0+</span>
+                        <span class="tech-tag">Advanced SQL</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Algorithm Design</span>
+                        <span class="tech-tag">Spatial Data</span>
                     </div>
                     <div class="project-links">
                         <a href="https://github.com/virtual457/Port-Management-System" class="project-link" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-github"></i>
-                            Source Code
-                        </a>
-                        <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-play"></i>
-                            Demo
+                            View Source Code
                         </a>
                     </div>
                 </div>
 
-                <!-- Project 3 -->
+                <!-- Project 5: Face Recognition System - LEGENDARY -->
                 <div class="project-card">
                     <div class="project-header">
                         <div class="project-icon">
                             <i class="fas fa-eye"></i>
                         </div>
-                        <h3 class="project-title">Neural Face Recognition System</h3>
+                        <h3 class="project-title">Face Recognition & Validation System</h3>
                     </div>
                     <p class="project-description">
-                        Advanced CNN-based facial recognition achieving 90% accuracy. Implements cutting-edge computer vision 
-                        techniques with real-time detection capabilities for security applications.
+                        Production-grade CNN architecture achieving 88.2% accuracy on validation set. Implements 5-layer ResNet-inspired network with 1.5M parameters, processing 4-frame stacks through 500,000 training steps. Features global average pooling, dropout regularization (0.7), and automated model checkpointing. Demonstrates expertise in computer vision, image preprocessing (52x36 RGB normalization), and real-time inference optimization for security applications.
                     </p>
                     <div class="tech-stack">
-                        <span class="tech-tag">Python</span>
                         <span class="tech-tag">TensorFlow</span>
-                        <span class="tech-tag">OpenCV</span>
+                        <span class="tech-tag">Python</span>
                         <span class="tech-tag">CNN</span>
+                        <span class="tech-tag">OpenCV</span>
                         <span class="tech-tag">Computer Vision</span>
+                        <span class="tech-tag">Deep Learning</span>
                     </div>
                     <div class="project-links">
                         <a href="https://github.com/virtual457/Recognition-and-Validation-of-Faces-using-Machine-Learning-and-Image-Processing" class="project-link" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-github"></i>
-                            Source Code
-                        </a>
-                        <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-external-link-alt"></i>
-                            Live Demo
+                            View Source Code
                         </a>
                     </div>
                 </div>
 
-                <!-- Project 4 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <h3 class="project-title">Scalable Examination Platform</h3>
-                    </div>
-                    <p class="project-description">
-                        Full-stack examination system supporting concurrent users with real-time monitoring, automated grading, 
-                        and comprehensive analytics. Built with Flask and MongoDB for educational institutions.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Flask</span>
-                        <span class="tech-tag">MongoDB</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">WebSockets</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/virtual457/Online-examination-using-mongodb" class="project-link" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-github"></i>
-                            Source Code
-                        </a>
-                        <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-external-link-alt"></i>
-                            Live Demo
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 5 -->
+                <!-- Project 6: PUBG Data Analytics - LEGENDARY -->
                 <div class="project-card">
                     <div class="project-header">
                         <div class="project-icon">
@@ -1322,64 +1333,33 @@
                         <h3 class="project-title">Big Data Analytics Platform</h3>
                     </div>
                     <p class="project-description">
-                        Comprehensive data analysis of 4.4M+ PUBG match records using Python. Features statistical modeling, 
-                        machine learning insights, and advanced visualizations with predictive analytics.
+                        Comprehensive analysis of 4.4M+ PUBG match records implementing statistical modeling and predictive analytics. Features multi-mode analysis (Solo, Duo, Squad) across 29 features, correlation studies identifying key performance indicators, and advanced visualizations using Seaborn and Matplotlib. Demonstrates expertise in large-scale data processing, feature engineering, and extracting actionable insights from complex datasets through Pandas and NumPy optimization.
                     </p>
                     <div class="tech-stack">
                         <span class="tech-tag">Python</span>
                         <span class="tech-tag">Pandas</span>
                         <span class="tech-tag">NumPy</span>
                         <span class="tech-tag">Matplotlib</span>
-                        <span class="tech-tag">Machine Learning</span>
+                        <span class="tech-tag">Seaborn</span>
+                        <span class="tech-tag">Statistical Analysis</span>
                     </div>
                     <div class="project-links">
                         <a href="https://github.com/virtual457/Data-analysis-on-pubg" class="project-link" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-github"></i>
-                            Source Code
-                        </a>
-                        <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-chart-bar"></i>
-                            Analytics Dashboard
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 6 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-cogs"></i>
-                        </div>
-                        <h3 class="project-title">Enterprise Data Pipeline</h3>
-                    </div>
-                    <p class="project-description">
-                        Event-driven microservices architecture at LSEG processing 7.5M+ compliance records at 40 records/sec. 
-                        Built with Java Micronaut and AWS serverless technologies ensuring 99.9% data integrity.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Java</span>
-                        <span class="tech-tag">Micronaut</span>
-                        <span class="tech-tag">AWS Lambda</span>
-                        <span class="tech-tag">AWS SQS</span>
-                        <span class="tech-tag">Event Sourcing</span>
-                    </div>
-                    <div class="project-links">
-                        <span class="project-link" style="color: var(--text-muted); cursor: not-allowed;">
-                            <i class="fas fa-lock"></i>
-                            Proprietary Code
-                        </span>
-                        <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-file-alt"></i>
-                            Case Study
+                            View Source Code
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 60px;">
-                <a href="https://github.com/virtual457" class="btn btn-primary" target="_blank">
+            <div style="text-align: center; margin-top: 60px; padding: 40px; background: var(--glass-bg); border-radius: 20px; border: 1px solid var(--gold);">
+                <h3 style="color: var(--gold); margin-bottom: 20px; font-size: 1.8rem;">🌟 Explore All Projects</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 30px; font-size: 1.1rem;">
+                    These 6 elite projects represent the pinnacle of technical achievement. Visit my GitHub to explore 25+ additional repositories covering web development, networking, game development, and more.
+                </p>
+                <a href="https://github.com/virtual457" class="btn btn-primary" target="_blank" style="background: var(--gradient-gold);">
                     <i class="fab fa-github"></i>
-                    View All Repositories
+                    View All 25+ Repositories
                 </a>
             </div>
         </div>
