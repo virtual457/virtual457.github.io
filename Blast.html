@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chandan - Software Engineer</title>
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Product+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -1198,6 +1199,294 @@
             box-shadow: 0 2px 4px rgba(66, 133, 244, 0.2);
         }
 
+        /* Projects Section Styles */
+        .projects-section {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+            border-color: var(--google-blue);
+        }
+
+        .project-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .project-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--google-blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .project-icon .material-icons {
+            font-size: 32px;
+            color: white;
+        }
+
+        .project-card:nth-child(1) .project-icon { background: var(--google-blue); }
+        .project-card:nth-child(2) .project-icon { background: var(--google-red); }
+        .project-card:nth-child(3) .project-icon { background: var(--google-yellow); }
+        .project-card:nth-child(4) .project-icon { background: var(--google-green); }
+        .project-card:nth-child(5) .project-icon { background: var(--google-blue); }
+        .project-card:nth-child(6) .project-icon { background: var(--google-red); }
+
+        .project-title {
+            font-family: 'Product Sans', sans-serif;
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .project-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .project-body {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            flex: 1;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .tech-badge {
+            padding: 4px 12px;
+            background: var(--bg-light);
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-light);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .project-link {
+            padding: 10px 20px;
+            background: var(--google-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .project-link:hover {
+            background: #1967d2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(66, 133, 244, 0.3);
+        }
+
+        /* GitHub Banner Styles */
+        .github-banner {
+            background: var(--bg-light);
+            border: 2px solid var(--border-light);
+            border-radius: 12px;
+            padding: 32px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            margin-top: 48px;
+        }
+
+        .github-banner:hover {
+            border-color: var(--google-blue);
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.1);
+        }
+
+        .banner-left {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .banner-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--google-blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .banner-icon .material-icons {
+            font-size: 36px;
+            color: white;
+        }
+
+        .banner-text h3 {
+            font-family: 'Product Sans', sans-serif;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .banner-text p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .banner-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 32px;
+            background: var(--google-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .banner-button:hover {
+            background: #1967d2;
+            transform: translateX(4px);
+        }
+
+        /* Achievements Section Styles */
+        .achievements-section {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .achievement-card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            padding: 32px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--google-blue);
+        }
+
+        .achievement-card:nth-child(2)::before { background: var(--google-red); }
+        .achievement-card:nth-child(3)::before { background: var(--google-yellow); }
+        .achievement-card:nth-child(4)::before { background: var(--google-green); }
+
+        .achievement-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+        }
+
+        .achievement-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .achievement-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--google-blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .achievement-card:nth-child(2) .achievement-icon { background: var(--google-red); }
+        .achievement-card:nth-child(3) .achievement-icon { background: var(--google-yellow); }
+        .achievement-card:nth-child(4) .achievement-icon { background: var(--google-green); }
+
+        .achievement-icon .material-icons {
+            font-size: 32px;
+            color: white;
+        }
+
+        .achievement-title {
+            font-family: 'Product Sans', sans-serif;
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .achievement-org {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .achievement-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .achievement-date {
+            font-size: 0.85rem;
+            color: var(--google-blue);
+            font-weight: 500;
+        }
+
         @media (max-width: 768px) {
             .hero {
                 padding: 60px 20px 40px;
@@ -1259,6 +1548,30 @@
 
             .experience-tab {
                 white-space: nowrap;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .github-banner {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+                padding: 32px 24px;
+            }
+
+            .banner-left {
+                flex-direction: column;
+            }
+
+            .banner-button {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -1697,18 +2010,247 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="section" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--bg-light);">
-        <div style="text-align: center; max-width: 800px; padding: 80px 20px;">
-            <h2 style="font-family: 'Product Sans', sans-serif; font-size: 3rem; color: var(--text-primary); margin-bottom: 20px;">Featured Projects</h2>
-            <p style="font-size: 1.2rem; color: var(--text-secondary); line-height: 1.6;">TOP 6 Elite Projects: Dino RL, Calendly, Orion, Port Management, Face Recognition, PUBG Analytics</p>
+    <section id="projects" class="section" style="background: var(--bg-light); padding: 80px 20px;">
+        <div class="projects-section">
+            <h2 style="text-align: center; font-family: 'Product Sans', sans-serif; font-size: 3rem; color: var(--text-primary); margin-bottom: 16px;">Featured Projects</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 60px; font-size: 1.2rem;">Top 6 elite projects showcasing AI, Cloud, Full-Stack, and Data Science expertise</p>
+
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <span class="material-icons">psychology</span>
+                        </div>
+                        <h3 class="project-title">Dino Game Deep RL Agent</h3>
+                        <p class="project-subtitle">AI • Machine Learning • Computer Vision</p>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            Autonomous AI agent using Double Deep Q-Network (DDQN) with ResNet architecture (1.5M parameters) to master Chrome's Dino game through deep reinforcement learning.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">CNN</span>
+                            <span class="tech-badge">Deep RL</span>
+                            <span class="tech-badge">OpenCV</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/virtual457/dino-game-AI" target="_blank" class="project-link">GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <span class="material-icons">event</span>
+                        </div>
+                        <h3 class="project-title">Calendly Clone</h3>
+                        <p class="project-subtitle">Full-Stack • TDD • Design Patterns</p>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            Enterprise-grade scheduling platform with comprehensive unit testing, design patterns, and real-time availability management using SOLID principles.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Java</span>
+                            <span class="tech-badge">Spring Boot</span>
+                            <span class="tech-badge">MySQL</span>
+                            <span class="tech-badge">TDD</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/virtual457/Calendly" target="_blank" class="project-link">GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <span class="material-icons">cloud</span>
+                        </div>
+                        <h3 class="project-title">Orion PaaS</h3>
+                        <p class="project-subtitle">Cloud • Kubernetes • Platform Engineering</p>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            Cloud-native Platform-as-a-Service with custom Kubernetes operator enabling single-command deployment across multiple environments.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Go</span>
+                            <span class="tech-badge">Kubernetes</span>
+                            <span class="tech-badge">Operator SDK</span>
+                            <span class="tech-badge">Docker</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/virtual457/Orion-platform" target="_blank" class="project-link">GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <span class="material-icons">directions_boat</span>
+                        </div>
+                        <h3 class="project-title">Maritime Logistics Platform</h3>
+                        <p class="project-subtitle">Full-Stack • Algorithms • Database</p>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            Port management system with Dijkstra's algorithm implemented in SQL for optimal route calculation and role-based authentication.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Django</span>
+                            <span class="tech-badge">MySQL</span>
+                            <span class="tech-badge">JavaScript</span>
+                            <span class="tech-badge">Algorithms</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/virtual457/Port-Management-System" target="_blank" class="project-link">GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <span class="material-icons">face</span>
+                        </div>
+                        <h3 class="project-title">Face Recognition System</h3>
+                        <p class="project-subtitle">Computer Vision • Deep Learning</p>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            Real-time face recognition using CNN with 95%+ accuracy for secure authentication and attendance tracking applications.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">TensorFlow</span>
+                            <span class="tech-badge">OpenCV</span>
+                            <span class="tech-badge">CNN</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/virtual457/Recognition-and-Validation-of-Faces-using-Machine-Learning-and-Image-Processing" target="_blank" class="project-link">GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <span class="material-icons">analytics</span>
+                        </div>
+                        <h3 class="project-title">PUBG Data Analytics</h3>
+                        <p class="project-subtitle">Big Data • Analytics • Visualization</p>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            Large-scale analytics platform processing 4.4M+ gaming records with statistical modeling and interactive dashboards.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Pandas</span>
+                            <span class="tech-badge">Data Viz</span>
+                            <span class="tech-badge">Big Data</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/virtual457/Data-analysis-on-pubg" target="_blank" class="project-link">GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View All Projects Banner -->
+            <div class="github-banner">
+                <div class="banner-left">
+                    <div class="banner-icon">
+                        <span class="material-icons">code</span>
+                    </div>
+                    <div class="banner-text">
+                        <h3>Want to see more?</h3>
+                        <p>Explore 20+ repositories covering Java, Python, Go, and more</p>
+                    </div>
+                </div>
+                <a href="https://github.com/virtual457" target="_blank" class="banner-button">
+                    <span>GitHub Profile</span>
+                    <span class="material-icons">arrow_forward</span>
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- Achievements Section -->
-    <section id="achievements" class="section" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--bg-white);">
-        <div style="text-align: center; max-width: 800px; padding: 80px 20px;">
-            <h2 style="font-family: 'Product Sans', sans-serif; font-size: 3rem; color: var(--text-primary); margin-bottom: 20px;">Achievements & Certifications</h2>
-            <p style="font-size: 1.2rem; color: var(--text-secondary); line-height: 1.6;">IEEE Publication, AWS Certification, RPA Certification, Competitions</p>
+    <section id="achievements" class="section" style="background: var(--bg-white); padding: 80px 20px;">
+        <div class="achievements-section">
+            <h2 style="text-align: center; font-family: 'Product Sans', sans-serif; font-size: 3rem; color: var(--text-primary); margin-bottom: 16px;">Achievements & Certifications</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 60px; font-size: 1.2rem;">Publications, certifications, and competitive achievements</p>
+
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-header">
+                        <div class="achievement-icon">
+                            <span class="material-icons">school</span>
+                        </div>
+                        <div>
+                            <h3 class="achievement-title">IEEE Publication</h3>
+                            <p class="achievement-org">IEEE Conference</p>
+                        </div>
+                    </div>
+                    <p class="achievement-description">
+                        Published research paper: "Doctor-Patient Assistance System using Artificial Intelligence" - Architected end-to-end AI architecture combining NLP with TensorFlow-based diagnostic models.
+                    </p>
+                    <p class="achievement-date">2020</p>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-header">
+                        <div class="achievement-icon">
+                            <span class="material-icons">cloud_done</span>
+                        </div>
+                        <div>
+                            <h3 class="achievement-title">AWS Certified Cloud Practitioner</h3>
+                            <p class="achievement-org">Amazon Web Services</p>
+                        </div>
+                    </div>
+                    <p class="achievement-description">
+                        Validated expertise in AWS cloud architecture, security best practices, and core cloud services including EC2, S3, Lambda, and IAM.
+                    </p>
+                    <p class="achievement-date">Valid Certification</p>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-header">
+                        <div class="achievement-icon">
+                            <span class="material-icons">precision_manufacturing</span>
+                        </div>
+                        <div>
+                            <h3 class="achievement-title">RPA Developer Certification</h3>
+                            <p class="achievement-org">Automation Anywhere</p>
+                        </div>
+                    </div>
+                    <p class="achievement-description">
+                        Advanced certification in Robotic Process Automation demonstrating expertise in bot development, OCR integration, and enterprise automation solutions.
+                    </p>
+                    <p class="achievement-date">2021</p>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-header">
+                        <div class="achievement-icon">
+                            <span class="material-icons">emoji_events</span>
+                        </div>
+                        <div>
+                            <h3 class="achievement-title">Hackathon Winner</h3>
+                            <p class="achievement-org">Coding Competitions</p>
+                        </div>
+                    </div>
+                    <p class="achievement-description">
+                        Active participant in hackathons and coding competitions during undergraduate studies, demonstrating problem-solving skills and innovative thinking.
+                    </p>
+                    <p class="achievement-date">2016-2020</p>
+                </div>
+            </div>
         </div>
     </section>
 

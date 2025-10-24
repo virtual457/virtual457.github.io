@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills Section - Interactive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Product+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --google-blue: #4285f4;
+            --google-red: #ea4335;
+            --google-yellow: #fbbc04;
+            --google-green: #34a853;
+            --text-primary: #202124;
+            --text-secondary: #5f6368;
+            --bg-white: #ffffff;
+            --bg-light: #f8f9fa;
+            --border-light: #dadce0;
+        }
+
+        body {
+            font-family: 'Google Sans', sans-serif;
+            background: var(--bg-light);
+            padding: 80px 20px;
+        }
+
+        .skills-section {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-family: 'Product Sans', sans-serif;
+            font-size: 3rem;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        /* Main Animated Card */
+        .main-card {
+            background: white;
+            border-radius: 20px;
+            padding: 48px;
+            height: 450px;
+            border: 2px solid var(--google-blue);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                transparent 0%, 
+                rgba(66, 133, 244, 0.05) 25%, 
+                rgba(234, 67, 53, 0.05) 50%, 
+                rgba(251, 188, 4, 0.05) 75%, 
+                transparent 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .main-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .main-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 24px;
+            background: var(--google-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { 
+                transform: scale(1); 
+                box-shadow: 0 0 0 0 rgba(66, 133, 244, 0.4); 
+            }
+            50% { 
+                transform: scale(1.05); 
+                box-shadow: 0 0 0 20px rgba(66, 133, 244, 0); 
+            }
+        }
+
+        .main-icon .material-icons {
+            font-size: 56px;
+            color: white;
+        }
+
+        .main-title {
+            font-family: 'Product Sans', sans-serif;
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .main-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        /* Circular Progress for Languages */
+        .circular-skills-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 16px;
+            max-width: 1000px;
+            margin: 0 auto;
+            flex: 1;
+            align-content: start;
+        }
+
+        .circular-skill {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .circle-progress {
+            width: 90px;
+            height: 90px;
+            margin: 0 0 12px 0;
+            position: relative;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .circle-progress svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+            overflow: visible;
+        }
+
+        .circle-bg {
+            fill: none;
+            stroke: var(--bg-light);
+            stroke-width: 8;
+        }
+
+        .circle-fill {
+            fill: none;
+            stroke: var(--google-blue);
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-dasharray: 283;
+            stroke-dashoffset: 283;
+            transition: stroke-dashoffset 1s ease;
+        }
+
+        .circular-skill:nth-child(2) .circle-fill { stroke: var(--google-red); }
+        .circular-skill:nth-child(3) .circle-fill { stroke: var(--google-yellow); }
+        .circular-skill:nth-child(4) .circle-fill { stroke: var(--google-green); }
+        .circular-skill:nth-child(5) .circle-fill { stroke: var(--google-blue); }
+        .circular-skill:nth-child(6) .circle-fill { stroke: var(--google-red); }
+        .circular-skill:nth-child(7) .circle-fill { stroke: var(--google-green); }
+
+        .circle-text {
+            font-family: 'Product Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .circle-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .circle-icon i {
+            font-size: 44px !important;
+            line-height: 1;
+            display: block;
+        }
+
+        .circular-skill:nth-child(1) .circle-icon i { color: var(--google-blue); }
+        .circular-skill:nth-child(2) .circle-icon i { color: var(--google-red); }
+        .circular-skill:nth-child(3) .circle-icon i { color: var(--google-yellow); }
+        .circular-skill:nth-child(4) .circle-icon i { color: var(--google-green); }
+        .circular-skill:nth-child(5) .circle-icon i { color: var(--google-blue); }
+        .circular-skill:nth-child(6) .circle-icon i { color: var(--google-red); }
+        .circular-skill:nth-child(7) .circle-icon i { color: var(--google-green); }
+
+        .skill-name {
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .skill-years {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+
+        /* Regular Tech List (for non-language categories) */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            flex: 1;
+            align-content: start;
+        }
+
+        .tech-item {
+            padding: 12px 16px;
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .tech-item:hover {
+            background: white;
+            border-color: var(--google-blue);
+            color: var(--google-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Flip Category Cards (5 cards below) */
+        .category-flip-cards {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+
+        .flip-card {
+            height: 180px;
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            cursor: pointer;
+        }
+
+        .flip-card-front {
+            background: var(--google-blue);
+            color: white;
+        }
+
+        .flip-card:nth-child(2) .flip-card-front { background: var(--google-red); }
+        .flip-card:nth-child(3) .flip-card-front { background: var(--google-yellow); }
+        .flip-card:nth-child(4) .flip-card-front { background: var(--google-green); }
+        .flip-card:nth-child(5) .flip-card-front { background: var(--google-blue); }
+
+        .flip-card-back {
+            background: white;
+            border: 2px solid var(--google-blue);
+            transform: rotateY(180deg);
+        }
+
+        .flip-card:nth-child(2) .flip-card-back { border-color: var(--google-red); }
+        .flip-card:nth-child(3) .flip-card-back { border-color: var(--google-yellow); }
+        .flip-card:nth-child(4) .flip-card-back { border-color: var(--google-green); }
+        .flip-card:nth-child(5) .flip-card-back { border-color: var(--google-blue); }
+
+        .flip-front-icon .material-icons {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        .flip-front-title {
+            font-family: 'Product Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .flip-front-count {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+
+        .flip-back-content {
+            text-align: center;
+        }
+
+        .flip-back-title {
+            font-family: 'Product Sans', sans-serif;
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .flip-back-list {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .info-note {
+            text-align: center;
+            margin-top: 32px;
+            padding: 20px;
+            background: rgba(66, 133, 244, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(66, 133, 244, 0.2);
+        }
+
+        .info-note p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1024px) {
+            .category-flip-cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .circular-skills-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-card {
+                height: auto;
+                min-height: 450px;
+            }
+
+            .category-flip-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .circular-skills-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="skills-section">
+        <div class="section-header">
+            <h2>Technical Skills</h2>
+            <p>Click or hover categories below • Main card auto-rotates every 5 seconds</p>
+        </div>
+
+        <!-- Test: Check if Devicons are loading -->
+        <div style="text-align: center; margin-bottom: 20px; padding: 20px; background: white; border-radius: 12px;">
+            <p style="margin-bottom: 12px; color: var(--text-secondary);">Devicon Test (should show language logos):</p>
+            <div style="display: flex; gap: 16px; justify-content: center; font-size: 40px;">
+                <i class="devicon-python-plain colored"></i>
+                <i class="devicon-java-plain colored"></i>
+                <i class="devicon-javascript-plain colored"></i>
+                <i class="devicon-go-original-wordmark colored"></i>
+                <i class="devicon-cplusplus-plain colored"></i>
+                <i class="devicon-csharp-plain colored"></i>
+                <i class="devicon-typescript-plain colored"></i>
+            </div>
+        </div>
+
+        <!-- Main Animated Pulse Card -->
+        <div class="main-card" id="mainCard">
+            <div class="animated-bg"></div>
+            <div class="main-content" id="mainContent">
+                <!-- Languages Content (Default) -->
+                <div class="main-header">
+                    <div class="main-icon">
+                        <span class="material-icons">code</span>
+                    </div>
+                    <h2 class="main-title">Programming Languages</h2>
+                    <p class="main-subtitle">4+ years production experience • 7 languages mastered</p>
+                </div>
+
+                <div class="circular-skills-grid">
+                    <div class="circular-skill">
+                        <div class="circle-progress">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
+                                <circle class="circle-fill" cx="50" cy="50" r="45" style="stroke-dashoffset: 42;"></circle>
+                            </svg>
+                            <div class="circle-icon">
+                                <i class="devicon-python-plain colored"></i>
+                            </div>
+                        </div>
+                        <div class="skill-name">Python</div>
+                        <div class="skill-years">4+ years</div>
+                    </div>
+
+                    <div class="circular-skill">
+                        <div class="circle-progress">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
+                                <circle class="circle-fill" cx="50" cy="50" r="45" style="stroke-dashoffset: 57;"></circle>
+                            </svg>
+                            <div class="circle-icon">
+                                <i class="devicon-java-plain colored"></i>
+                            </div>
+                        </div>
+                        <div class="skill-name">Java</div>
+                        <div class="skill-years">3+ years</div>
+                    </div>
+
+                    <div class="circular-skill">
+                        <div class="circle-progress">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
+                                <circle class="circle-fill" cx="50" cy="50" r="45" style="stroke-dashoffset: 85;"></circle>
+                            </svg>
+                            <div class="circle-icon">
+                                <i class="devicon-javascript-plain colored"></i>
+                            </div>
+                        </div>
+                        <div class="skill-name">JavaScript</div>
+                        <div class="skill-years">2+ years</div>
+                    </div>
+
+                    <div class="circular-skill">
+                        <div class="circle-progress">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
+                                <circle class="circle-fill" cx="50" cy="50" r="45" style="stroke-dashoffset: 113;"></circle>
+                            </svg>
+                            <div class="circle-icon">
+                                <i class="devicon-go-original-wordmark colored"></i>
+                            </div>
+                        </div>
+                        <div class="skill-name">Go</div>
+                        <div class="skill-years">Projects</div>
+                    </div>
+
+                    <div class="circular-skill">
+                        <div class="circle-progress">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
+                                <circle class="circle-fill" cx="50" cy="50" r="45" style="stroke-dashoffset: 113;"></circle>
+                            </svg>
+                            <div class="circle-icon">
+                                <i class="devicon-cplusplus-plain colored"></i>
+                            </div>
+                        </div>
+                        <div class="skill-name">C++</div>
+                        <div class="skill-years">Academic</div>
+                    </div>
+
+                    <div class="circular-skill">
+                        <div class="circle-progress">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
+                                <circle class="circle-fill" cx="50" cy="50" r="45" style="stroke-dashoffset: 99;"></circle>
+                            </svg>
+                            <div class="circle-icon">
+                                <i class="devicon-csharp-plain colored"></i>
+                            </div>
+                        </div>
+                        <div class="skill-name">C#</div>
+                        <div class="skill-years">1+ year</div>
+                    </div>
+
+                    <div class="circular-skill">
+                        <div class="circle-progress">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
+                                <circle class="circle-fill" cx="50" cy="50" r="45" style="stroke-dashoffset: 113;"></circle>
+                            </svg>
+                            <div class="circle-icon">
+                                <i class="devicon-typescript-plain colored"></i>
+                            </div>
+                        </div>
+                        <div class="skill-name">TypeScript</div>
+                        <div class="skill-years">Projects</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5 Flip Category Cards -->
+        <div class="category-flip-cards">
+            <div class="flip-card" onclick="showCategory(0)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="flip-front-icon">
+                            <span class="material-icons">code</span>
+                        </div>
+                        <div class="flip-front-title">Languages</div>
+                        <div class="flip-front-count">7 languages</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="flip-back-content">
+                            <h4 class="flip-back-title">Programming</h4>
+                            <p class="flip-back-list">
+                                Python • Java<br>
+                                JavaScript • Go<br>
+                                C++ • C#<br>
+                                TypeScript
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" onclick="showCategory(1)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="flip-front-icon">
+                            <span class="material-icons">psychology</span>
+                        </div>
+                        <div class="flip-front-title">AI/ML</div>
+                        <div class="flip-front-count">6 tools</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="flip-back-content">
+                            <h4 class="flip-back-title">Machine Learning</h4>
+                            <p class="flip-back-list">
+                                TensorFlow<br>
+                                Deep RL • CNN<br>
+                                Pandas • NumPy<br>
+                                Computer Vision
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" onclick="showCategory(2)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="flip-front-icon">
+                            <span class="material-icons">cloud</span>
+                        </div>
+                        <div class="flip-front-title">Cloud & DevOps</div>
+                        <div class="flip-front-count">10+ tools</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="flip-back-content">
+                            <h4 class="flip-back-title">Infrastructure</h4>
+                            <p class="flip-back-list">
+                                AWS Lambda • SQS<br>
+                                Kubernetes • Docker<br>
+                                Terraform • Linux<br>
+                                CI/CD Pipelines
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" onclick="showCategory(3)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="flip-front-icon">
+                            <span class="material-icons">web</span>
+                        </div>
+                        <div class="flip-front-title">Frameworks</div>
+                        <div class="flip-front-count">5 frameworks</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="flip-back-content">
+                            <h4 class="flip-back-title">Development</h4>
+                            <p class="flip-back-list">
+                                Spring Boot<br>
+                                Micronaut<br>
+                                Django • React<br>
+                                Web Development
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" onclick="showCategory(4)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="flip-front-icon">
+                            <span class="material-icons">storage</span>
+                        </div>
+                        <div class="flip-front-title">Databases</div>
+                        <div class="flip-front-count">6 technologies</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="flip-back-content">
+                            <h4 class="flip-back-title">Data Systems</h4>
+                            <p class="flip-back-list">
+                                MySQL • NoSQL<br>
+                                ETL Pipelines<br>
+                                Batch Processing<br>
+                                Query Optimization
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-note">
+            <p>
+                <strong>✨ Interactive Features:</strong><br>
+                ✅ Main card auto-rotates through all 5 categories every 5 seconds<br>
+                ✅ Click any category card to jump to that skill set<br>
+                ✅ Hover category cards to flip and see detailed tech list<br>
+                ✅ Languages show circular proficiency indicators<br>
+                ✅ Other categories show clean tech grids
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const categories = [
+            {
+                icon: 'code',
+                iconColor: '#4285f4',
+                borderColor: '#4285f4',
+                title: 'Programming Languages',
+                subtitle: '4+ years production experience • 7 languages mastered',
+                type: 'circular',
+                skills: [
+                    { name: 'Python', level: 95, years: '4+ years', icon: 'devicon-python-plain' },
+                    { name: 'Java', level: 90, years: '3+ years', icon: 'devicon-java-plain' },
+                    { name: 'JavaScript', level: 80, years: '2+ years', icon: 'devicon-javascript-plain' },
+                    { name: 'Go', level: 70, years: 'Projects', icon: 'devicon-go-original-wordmark' },
+                    { name: 'C++', level: 70, years: 'Academic', icon: 'devicon-cplusplus-plain' },
+                    { name: 'C#', level: 75, years: '1+ year', icon: 'devicon-csharp-plain' },
+                    { name: 'TypeScript', level: 70, years: 'Projects', icon: 'devicon-typescript-plain' }
+                ]
+            },
+            {
+                icon: 'psychology',
+                iconColor: '#ea4335',
+                borderColor: '#ea4335',
+                title: 'AI & Machine Learning',
+                subtitle: 'Deep learning, reinforcement learning, and computer vision',
+                type: 'grid',
+                skills: ['TensorFlow', 'Deep RL', 'CNN', 'Pandas', 'NumPy', 'Computer Vision']
+            },
+            {
+                icon: 'cloud',
+                iconColor: '#fbbc04',
+                borderColor: '#fbbc04',
+                title: 'Cloud & DevOps',
+                subtitle: '3+ years AWS experience • Kubernetes & container orchestration',
+                type: 'grid',
+                skills: ['AWS Lambda', 'SQS', 'API Gateway', 'CloudWatch', 'Kubernetes', 'Docker', 'Terraform', 'Linux/Unix', 'CI/CD Pipelines', 'Git']
+            },
+            {
+                icon: 'web',
+                iconColor: '#34a853',
+                borderColor: '#34a853',
+                title: 'Frameworks & Tools',
+                subtitle: 'Enterprise Java and Python frameworks for scalable applications',
+                type: 'grid',
+                skills: ['Spring Boot', 'Micronaut', 'Django', 'React', 'Web Development']
+            },
+            {
+                icon: 'storage',
+                iconColor: '#4285f4',
+                borderColor: '#4285f4',
+                title: 'Database & Data Processing',
+                subtitle: 'SQL and NoSQL expertise with ETL pipeline development',
+                type: 'grid',
+                skills: ['MySQL', 'NoSQL', 'ETL Pipelines', 'Batch Processing', 'Data Migration', 'Query Optimization']
+            }
+        ];
+
+        let currentCategory = 0;
+        let autoRotateInterval;
+
+        function showCategory(index) {
+            currentCategory = index;
+            const cat = categories[index];
+            const mainCard = document.getElementById('mainCard');
+            const mainContent = document.getElementById('mainContent');
+
+            // Update border color
+            mainCard.style.borderColor = cat.borderColor;
+
+            // Update icon color
+            mainCard.querySelector('.main-icon').style.background = cat.iconColor;
+            mainCard.querySelector('.main-icon .material-icons').textContent = cat.icon;
+
+            // Fade out
+            mainContent.style.opacity = '0';
+            mainContent.style.transform = 'translateY(20px)';
+
+            setTimeout(() => {
+                // Update content
+                let contentHTML = `
+                    <div class="main-header">
+                        <div class="main-icon">
+                            <span class="material-icons">${cat.icon}</span>
+                        </div>
+                        <h2 class="main-title">${cat.title}</h2>
+                        <p class="main-subtitle">${cat.subtitle}</p>
+                    </div>
+                `;
+
+                if (cat.type === 'circular') {
+                    // Circular progress for languages with Devicons
+                    contentHTML += '<div class="circular-skills-grid">';
+                    cat.skills.forEach((skill, idx) => {
+                        const colors = ['#4285f4', '#ea4335', '#fbbc04', '#34a853', '#4285f4', '#ea4335', '#34a853'];
+                        const strokeDashoffset = 283 - (283 * skill.level / 100);
+                        contentHTML += `
+                            <div class="circular-skill">
+                                <div class="circle-progress">
+                                    <svg viewBox="0 0 100 100">
+                                        <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
+                                        <circle class="circle-fill" cx="50" cy="50" r="45" 
+                                            style="stroke: ${colors[idx]}; stroke-dashoffset: ${strokeDashoffset};"></circle>
+                                    </svg>
+                                    <div class="circle-icon">
+                                        <i class="${skill.icon} colored"></i>
+                                    </div>
+                                </div>
+                                <div class="skill-name">${skill.name}</div>
+                                <div class="skill-years">${skill.years}</div>
+                            </div>
+                        `;
+                    });
+                    contentHTML += '</div>';
+                } else {
+                    // Grid for other categories
+                    contentHTML += '<div class="tech-grid">';
+                    cat.skills.forEach(skill => {
+                        contentHTML += `<div class="tech-item">${skill}</div>`;
+                    });
+                    contentHTML += '</div>';
+                }
+
+                mainContent.innerHTML = contentHTML;
+
+                // Fade in
+                setTimeout(() => {
+                    mainContent.style.opacity = '1';
+                    mainContent.style.transform = 'translateY(0)';
+                }, 50);
+            }, 300);
+        }
+
+        // Auto-rotate every 5 seconds
+        function startAutoRotate() {
+            // Clear any existing interval first
+            if (autoRotateInterval) {
+                clearInterval(autoRotateInterval);
+            }
+            
+            autoRotateInterval = setInterval(() => {
+                currentCategory = (currentCategory + 1) % 5;
+                showCategory(currentCategory);
+            }, 5000);
+        }
+
+        // Stop auto-rotate on manual interaction
+        document.querySelectorAll('.flip-card').forEach((card, index) => {
+            card.addEventListener('click', () => {
+                clearInterval(autoRotateInterval);
+                showCategory(index);
+                // Restart auto-rotate after 10 seconds of inactivity
+                setTimeout(() => {
+                    startAutoRotate();
+                }, 10000);
+            });
+        });
+
+        // Initialize
+        mainContent.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        startAutoRotate();
+    </script>
+</body>
+</html>
