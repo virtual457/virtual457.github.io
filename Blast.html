@@ -2768,7 +2768,7 @@
     <section id="skills" class="section" style="background: var(--bg-light); padding: 80px 20px;">
         <div class="skills-section-container">
             <h2 style="text-align: center; font-family: 'Product Sans', sans-serif; font-size: 3rem; color: var(--text-primary); margin-bottom: 16px;">Technical Skills</h2>
-            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 60px; font-size: 1.2rem;">Click or hover categories below • Main card auto-rotates every 7 seconds</p>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 60px; font-size: 1.2rem;">Click or hover categories below • Main card auto-rotates every 5 seconds</p>
 
             <div class="main-skills-card" id="mainSkillsCard">
                 <div class="main-skills-content" id="mainSkillsContent">
@@ -3371,7 +3371,7 @@
             skillsAutoRotateInterval = setInterval(() => {
                 currentSkillCategory = (currentSkillCategory + 1) % 5;
                 showSkillCategory(currentSkillCategory);
-            }, 7000);
+            }, 5000);
         }
 
         // Initialize skills on page load
