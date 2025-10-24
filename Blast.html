@@ -6,6 +6,7 @@
     <title>Chandan - Software Engineer</title>
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Product+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" />
     <style>
         * {
             margin: 0;
@@ -1487,6 +1488,276 @@
             font-weight: 500;
         }
 
+        /* Skills Section Styles */
+        .skills-section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .main-skills-card {
+            background: white;
+            border-radius: 20px;
+            padding: 48px;
+            height: 450px;
+            border: 2px solid var(--google-blue);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            transition: border-color 0.3s ease;
+        }
+
+        .main-skills-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .skills-main-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 16px;
+        }
+
+        .skills-main-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--google-blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: skillsIconPulse 2s ease-in-out infinite;
+            flex-shrink: 0;
+            transition: background 0.3s ease;
+        }
+
+        @keyframes skillsIconPulse {
+            0%, 100% { 
+                transform: scale(1); 
+                box-shadow: 0 0 0 0 rgba(66, 133, 244, 0.4); 
+            }
+            50% { 
+                transform: scale(1.05); 
+                box-shadow: 0 0 0 20px rgba(66, 133, 244, 0); 
+            }
+        }
+
+        .skills-main-icon .material-icons {
+            font-size: 36px;
+            color: white;
+        }
+
+        .skills-main-title-group {
+            text-align: left;
+        }
+
+        .skills-main-title {
+            font-family: 'Product Sans', sans-serif;
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .skills-main-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .skills-main-description {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 28px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .skills-circular-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            flex: 1;
+            align-content: start;
+        }
+
+        .skills-circular-skill {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .skills-circle-progress {
+            width: 100px;
+            height: 100px;
+            margin: 0 0 16px 0;
+            position: relative;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .skills-circle-progress svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+            overflow: visible;
+        }
+
+        .skills-circle-bg {
+            fill: none;
+            stroke: var(--bg-light);
+            stroke-width: 8;
+        }
+
+        .skills-circle-fill {
+            fill: none;
+            stroke: var(--google-blue);
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-dasharray: 283;
+            stroke-dashoffset: 283;
+            transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .skills-circle-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .skills-circle-icon i {
+            font-size: 48px !important;
+            line-height: 1;
+            display: block;
+        }
+
+        .skills-skill-name {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .skills-skill-years {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .skills-category-cards {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+
+        .skills-flip-card {
+            height: 180px;
+            perspective: 1000px;
+        }
+
+        .skills-flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .skills-flip-card:hover .skills-flip-inner {
+            transform: rotateY(180deg);
+        }
+
+        .skills-flip-front,
+        .skills-flip-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            cursor: pointer;
+        }
+
+        .skills-flip-front {
+            background: var(--google-blue);
+            color: white;
+        }
+
+        .skills-flip-card:nth-child(2) .skills-flip-front { background: var(--google-red); }
+        .skills-flip-card:nth-child(3) .skills-flip-front { background: var(--google-yellow); }
+        .skills-flip-card:nth-child(4) .skills-flip-front { background: var(--google-green); }
+        .skills-flip-card:nth-child(5) .skills-flip-front { background: var(--google-blue); }
+
+        .skills-flip-back {
+            background: white;
+            border: 2px solid var(--google-blue);
+            transform: rotateY(180deg);
+        }
+
+        .skills-flip-card:nth-child(2) .skills-flip-back { border-color: var(--google-red); }
+        .skills-flip-card:nth-child(3) .skills-flip-back { border-color: var(--google-yellow); }
+        .skills-flip-card:nth-child(4) .skills-flip-back { border-color: var(--google-green); }
+        .skills-flip-card:nth-child(5) .skills-flip-back { border-color: var(--google-blue); }
+
+        .skills-flip-icon .material-icons {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        .skills-flip-title {
+            font-family: 'Product Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .skills-flip-count {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+
+        .skills-flip-back-content {
+            text-align: center;
+        }
+
+        .skills-flip-back-title {
+            font-family: 'Product Sans', sans-serif;
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .skills-flip-back-list {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
         @media (max-width: 768px) {
             .hero {
                 padding: 60px 20px 40px;
@@ -1572,6 +1843,19 @@
 
             .achievements-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .main-skills-card {
+                height: auto;
+                min-height: 450px;
+            }
+
+            .skills-category-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .skills-circular-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
     </style>
@@ -2255,10 +2539,144 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="section" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--bg-light);">
-        <div style="text-align: center; max-width: 800px; padding: 80px 20px;">
-            <h2 style="font-family: 'Product Sans', sans-serif; font-size: 3rem; color: var(--text-primary); margin-bottom: 20px;">Technical Skills</h2>
-            <p style="font-size: 1.2rem; color: var(--text-secondary); line-height: 1.6;">Java, Python, Go, AWS, Kubernetes, Deep RL, TensorFlow, Spring Boot, Django, MySQL</p>
+    <section id="skills" class="section" style="background: var(--bg-light); padding: 80px 20px;">
+        <div class="skills-section-container">
+            <h2 style="text-align: center; font-family: 'Product Sans', sans-serif; font-size: 3rem; color: var(--text-primary); margin-bottom: 16px;">Technical Skills</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 60px; font-size: 1.2rem;">Click or hover categories below • Main card auto-rotates every 7 seconds</p>
+
+            <div class="main-skills-card" id="mainSkillsCard">
+                <div class="main-skills-content" id="mainSkillsContent">
+                    <div class="skills-main-header">
+                        <div class="skills-main-icon">
+                            <span class="material-icons">code</span>
+                        </div>
+                        <div class="skills-main-title-group">
+                            <h2 class="skills-main-title">Programming Languages</h2>
+                            <p class="skills-main-subtitle">4+ years production experience • 7 languages mastered</p>
+                        </div>
+                    </div>
+
+                    <p class="skills-main-description">
+                        Expert in Python and Java with 4+ years production experience. Versatile across multiple programming paradigms for building scalable systems.
+                    </p>
+
+                    <div class="skills-circular-grid" id="skillsCircularGrid"></div>
+                </div>
+            </div>
+
+            <div class="skills-category-cards">
+                <div class="skills-flip-card" onclick="showSkillCategory(0)">
+                    <div class="skills-flip-inner">
+                        <div class="skills-flip-front">
+                            <div class="skills-flip-icon">
+                                <span class="material-icons">code</span>
+                            </div>
+                            <div class="skills-flip-title">Languages</div>
+                            <div class="skills-flip-count">7 languages</div>
+                        </div>
+                        <div class="skills-flip-back">
+                            <div class="skills-flip-back-content">
+                                <h4 class="skills-flip-back-title">Programming</h4>
+                                <p class="skills-flip-back-list">
+                                    Python • Java<br>
+                                    TypeScript • C#<br>
+                                    JavaScript • Go<br>
+                                    C++
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-flip-card" onclick="showSkillCategory(1)">
+                    <div class="skills-flip-inner">
+                        <div class="skills-flip-front">
+                            <div class="skills-flip-icon">
+                                <span class="material-icons">psychology</span>
+                            </div>
+                            <div class="skills-flip-title">AI/ML</div>
+                            <div class="skills-flip-count">6 tools</div>
+                        </div>
+                        <div class="skills-flip-back">
+                            <div class="skills-flip-back-content">
+                                <h4 class="skills-flip-back-title">Machine Learning</h4>
+                                <p class="skills-flip-back-list">
+                                    TensorFlow • PyTorch<br>
+                                    Pandas • NumPy<br>
+                                    OpenCV • Jupyter
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-flip-card" onclick="showSkillCategory(2)">
+                    <div class="skills-flip-inner">
+                        <div class="skills-flip-front">
+                            <div class="skills-flip-icon">
+                                <span class="material-icons">cloud</span>
+                            </div>
+                            <div class="skills-flip-title">Cloud & DevOps</div>
+                            <div class="skills-flip-count">6 tools</div>
+                        </div>
+                        <div class="skills-flip-back">
+                            <div class="skills-flip-back-content">
+                                <h4 class="skills-flip-back-title">Infrastructure</h4>
+                                <p class="skills-flip-back-list">
+                                    AWS • Kubernetes<br>
+                                    Docker • Terraform<br>
+                                    Linux • Git
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-flip-card" onclick="showSkillCategory(3)">
+                    <div class="skills-flip-inner">
+                        <div class="skills-flip-front">
+                            <div class="skills-flip-icon">
+                                <span class="material-icons">web</span>
+                            </div>
+                            <div class="skills-flip-title">Frameworks</div>
+                            <div class="skills-flip-count">7 frameworks</div>
+                        </div>
+                        <div class="skills-flip-back">
+                            <div class="skills-flip-back-content">
+                                <h4 class="skills-flip-back-title">Development</h4>
+                                <p class="skills-flip-back-list">
+                                    Spring • Micronaut<br>
+                                    Mockito • Django<br>
+                                    React • Flask<br>
+                                    Bootstrap
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-flip-card" onclick="showSkillCategory(4)">
+                    <div class="skills-flip-inner">
+                        <div class="skills-flip-front">
+                            <div class="skills-flip-icon">
+                                <span class="material-icons">storage</span>
+                            </div>
+                            <div class="skills-flip-title">Databases</div>
+                            <div class="skills-flip-count">5 databases</div>
+                        </div>
+                        <div class="skills-flip-back">
+                            <div class="skills-flip-back-content">
+                                <h4 class="skills-flip-back-title">Data Systems</h4>
+                                <p class="skills-flip-back-list">
+                                    MySQL • PostgreSQL<br>
+                                    MongoDB • Redis<br>
+                                    SQLite
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -2518,6 +2936,183 @@
 
             document.getElementById(tabId).classList.add('active');
             evt.currentTarget.classList.add('active');
+        }
+
+        // Skills Section - Category Switching
+        const skillsCategories = [
+            {
+                icon: 'code',
+                iconColor: '#4285f4',
+                borderColor: '#4285f4',
+                title: 'Programming Languages',
+                subtitle: '4+ years production experience • 7 languages mastered',
+                description: 'Expert in Python and Java with 4+ years production experience. Versatile across multiple programming paradigms for building scalable systems.',
+                skills: [
+                    { name: 'Python', level: 95, years: '4+ years', icon: 'devicon-python-plain' },
+                    { name: 'Java', level: 90, years: '3+ years', icon: 'devicon-java-plain' },
+                    { name: 'TypeScript', level: 80, years: '2+ years', icon: 'devicon-typescript-plain' },
+                    { name: 'C#', level: 75, years: '1+ year', icon: 'devicon-csharp-plain' },
+                    { name: 'JavaScript', level: 70, years: 'Projects', icon: 'devicon-javascript-plain' },
+                    { name: 'Go', level: 70, years: 'Projects', icon: 'devicon-go-original-wordmark' },
+                    { name: 'C++', level: 70, years: 'Academic', icon: 'devicon-cplusplus-plain' }
+                ]
+            },
+            {
+                icon: 'psychology',
+                iconColor: '#ea4335',
+                borderColor: '#ea4335',
+                title: 'AI & Machine Learning',
+                subtitle: 'Deep learning, reinforcement learning, and computer vision',
+                description: 'Hands-on experience with TensorFlow and PyTorch for deep learning projects. Strong data processing skills with Pandas and NumPy for machine learning pipelines.',
+                skills: [
+                    { name: 'TensorFlow', level: 90, years: 'Projects', icon: 'devicon-tensorflow-original' },
+                    { name: 'PyTorch', level: 85, years: 'Projects', icon: 'devicon-pytorch-original' },
+                    { name: 'Pandas', level: 90, years: '3+ years', icon: 'devicon-python-plain' },
+                    { name: 'NumPy', level: 85, years: '3+ years', icon: 'devicon-numpy-plain' },
+                    { name: 'Jupyter', level: 85, years: '3+ years', icon: 'devicon-jupyter-plain' },
+                    { name: 'OpenCV', level: 75, years: 'Projects', icon: 'devicon-opencv-plain' }
+                ]
+            },
+            {
+                icon: 'cloud',
+                iconColor: '#fbbc04',
+                borderColor: '#fbbc04',
+                title: 'Cloud & DevOps',
+                subtitle: '3+ years AWS experience • Container orchestration & CI/CD',
+                description: 'Production experience with AWS serverless architecture and Lambda functions. Proficient in containerization with Docker and orchestration using Kubernetes.',
+                skills: [
+                    { name: 'Git', level: 90, years: '4+ years', icon: 'devicon-git-plain' },
+                    { name: 'AWS', level: 85, years: '3+ years', icon: 'devicon-amazonwebservices-plain-wordmark' },
+                    { name: 'Linux', level: 85, years: '4+ years', icon: 'devicon-linux-plain' },
+                    { name: 'Terraform', level: 70, years: 'Projects', icon: 'devicon-terraform-plain' },
+                    { name: 'Kubernetes', level: 70, years: 'Projects', icon: 'devicon-kubernetes-plain' },
+                    { name: 'Docker', level: 70, years: 'Projects', icon: 'devicon-docker-plain' }
+                ]
+            },
+            {
+                icon: 'web',
+                iconColor: '#34a853',
+                borderColor: '#34a853',
+                title: 'Frameworks & Tools',
+                subtitle: 'Enterprise Java and Python frameworks for scalable applications',
+                description: 'Extensive experience with Spring Boot and Micronaut for microservices architecture. Proficient in Django and React for full-stack development.',
+                skills: [
+                    { name: 'Spring', level: 90, years: '3+ years', icon: 'devicon-spring-plain' },
+                    { name: 'Micronaut', level: 85, years: '2+ years', icon: 'devicon-spring-plain' },
+                    { name: 'Mockito', level: 85, years: '2+ years', icon: 'devicon-java-plain' },
+                    { name: 'Django', level: 80, years: 'Projects', icon: 'devicon-django-plain' },
+                    { name: 'Bootstrap', level: 75, years: '2+ years', icon: 'devicon-bootstrap-plain' },
+                    { name: 'React', level: 75, years: 'Projects', icon: 'devicon-react-original' },
+                    { name: 'Flask', level: 75, years: 'Projects', icon: 'devicon-flask-original' }
+                ]
+            },
+            {
+                icon: 'storage',
+                iconColor: '#4285f4',
+                borderColor: '#4285f4',
+                title: 'Database & Data Processing',
+                subtitle: 'SQL and NoSQL expertise with ETL pipeline development',
+                description: 'Strong MySQL expertise with complex query optimization and stored procedures. Experience with PostgreSQL and NoSQL databases for diverse data storage needs.',
+                skills: [
+                    { name: 'MySQL', level: 90, years: '4+ years', icon: 'devicon-mysql-plain' },
+                    { name: 'PostgreSQL', level: 75, years: '2+ years', icon: 'devicon-postgresql-plain' },
+                    { name: 'SQLite', level: 75, years: 'Projects', icon: 'devicon-sqlite-plain' },
+                    { name: 'Redis', level: 70, years: 'Projects', icon: 'devicon-redis-plain' },
+                    { name: 'MongoDB', level: 70, years: 'Projects', icon: 'devicon-mongodb-plain' }
+                ]
+            }
+        ];
+
+        let currentSkillCategory = 0;
+        let skillsAutoRotateInterval;
+
+        function showSkillCategory(index) {
+            currentSkillCategory = index;
+            const cat = skillsCategories[index];
+            const mainCard = document.getElementById('mainSkillsCard');
+            const mainContent = document.getElementById('mainSkillsContent');
+
+            mainCard.style.borderColor = cat.borderColor;
+            mainContent.style.opacity = '0';
+            mainContent.style.transform = 'translateY(20px)';
+
+            setTimeout(() => {
+                let contentHTML = '';
+                contentHTML += '<div class="skills-main-header">';
+                contentHTML += '<div class="skills-main-icon" style="background: ' + cat.iconColor + ';">';
+                contentHTML += '<span class="material-icons">' + cat.icon + '</span>';
+                contentHTML += '</div>';
+                contentHTML += '<div class="skills-main-title-group">';
+                contentHTML += '<h2 class="skills-main-title">' + cat.title + '</h2>';
+                contentHTML += '<p class="skills-main-subtitle">' + cat.subtitle + '</p>';
+                contentHTML += '</div>';
+                contentHTML += '</div>';
+                contentHTML += '<p class="skills-main-description">' + cat.description + '</p>';
+                contentHTML += '<div class="skills-circular-grid">';
+                
+                cat.skills.forEach((skill, idx) => {
+                    const colors = ['#4285f4', '#ea4335', '#fbbc04', '#34a853', '#4285f4', '#ea4335', '#34a853', '#4285f4', '#ea4335', '#fbbc04'];
+                    const strokeDashoffset = 283 - (283 * skill.level / 100);
+                    
+                    contentHTML += '<div class="skills-circular-skill">';
+                    contentHTML += '<div class="skills-circle-progress">';
+                    contentHTML += '<svg viewBox="0 0 100 100">';
+                    contentHTML += '<circle class="skills-circle-bg" cx="50" cy="50" r="45"></circle>';
+                    contentHTML += '<circle class="skills-circle-fill" cx="50" cy="50" r="45" data-target="' + strokeDashoffset + '" style="stroke: ' + colors[idx] + '; stroke-dashoffset: 283;"></circle>';
+                    contentHTML += '</svg>';
+                    contentHTML += '<div class="skills-circle-icon">';
+                    contentHTML += '<i class="' + skill.icon + ' colored"></i>';
+                    contentHTML += '</div>';
+                    contentHTML += '</div>';
+                    contentHTML += '<div class="skills-skill-name">' + skill.name + '</div>';
+                    contentHTML += '<div class="skills-skill-years">' + skill.years + '</div>';
+                    contentHTML += '</div>';
+                });
+                
+                contentHTML += '</div>';
+                mainContent.innerHTML = contentHTML;
+
+                setTimeout(() => {
+                    mainContent.style.opacity = '1';
+                    mainContent.style.transform = 'translateY(0)';
+                    
+                    // Animate circles filling up
+                    setTimeout(() => {
+                        const circles = mainContent.querySelectorAll('.skills-circle-fill');
+                        circles.forEach(circle => {
+                            const targetOffset = circle.getAttribute('data-target');
+                            circle.style.strokeDashoffset = targetOffset;
+                        });
+                    }, 150);
+                }, 50);
+            }, 300);
+        }
+
+        function startSkillsAutoRotate() {
+            if (skillsAutoRotateInterval) {
+                clearInterval(skillsAutoRotateInterval);
+            }
+            
+            skillsAutoRotateInterval = setInterval(() => {
+                currentSkillCategory = (currentSkillCategory + 1) % 5;
+                showSkillCategory(currentSkillCategory);
+            }, 7000);
+        }
+
+        // Initialize skills on page load
+        if (document.getElementById('mainSkillsCard')) {
+            showSkillCategory(0);
+            startSkillsAutoRotate();
+
+            document.querySelectorAll('.skills-flip-card').forEach((card, index) => {
+                card.addEventListener('click', () => {
+                    clearInterval(skillsAutoRotateInterval);
+                    showSkillCategory(index);
+                    setTimeout(() => {
+                        startSkillsAutoRotate();
+                    }, 10000);
+                });
+            });
         }
     </script>
 </body>
