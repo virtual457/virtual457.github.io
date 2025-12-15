@@ -1488,6 +1488,70 @@
             font-weight: 500;
         }
 
+        .cert-actions {
+            margin-top: 16px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .cert-btn {
+            padding: 8px 16px;
+            background: var(--google-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cert-btn:hover {
+            background: #1967d2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(66, 133, 244, 0.3);
+        }
+
+        .cert-btn .material-icons {
+            font-size: 16px;
+        }
+
+        .cert-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .cert-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .cert-date {
+            background: rgba(66, 133, 244, 0.1);
+            color: var(--google-blue);
+        }
+
+        .cert-expiry {
+            background: rgba(52, 168, 83, 0.1);
+            color: var(--google-green);
+        }
+
+        .cert-credential {
+            background: var(--bg-light);
+            color: var(--text-secondary);
+        }
+
         /* Skills Section Styles */
         .skills-section-container {
             max-width: 1200px;
@@ -2087,7 +2151,8 @@
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
+    <!-- Loading Screen - DISABLED -->
+    <!--
     <div class="loading-screen" id="loader">
         <div class="google-loader">
             <div class="loader-dot"></div>
@@ -2097,6 +2162,7 @@
         </div>
         <p class="loading-text">Loading...</p>
     </div>
+    -->
 
     <!-- Fixed Top Navigation - Slides Down on Scroll -->
     <nav class="top-navbar" id="topNavbar">
@@ -2147,7 +2213,7 @@
         </ul>
     </nav>
 
-    <section class="hero" id="home">
+    <section class="hero visible" id="home">
         <div class="mesh-bg">
             <div class="mesh-orb mesh-orb-1"></div>
             <div class="mesh-orb mesh-orb-2"></div>
@@ -2208,13 +2274,13 @@
             </p>
 
             <p class="hero-description">
-                Experienced software engineer with 4+ years building scalable systems at LSEG & Infosys. 
+                Experienced software engineer with 3 years building scalable systems at LSEG & Infosys. 
                 Specializing in Deep RL, Enterprise Java, Kubernetes, Advanced Databases, and Machine Learning.
             </p>
 
             <div class="stats-grid">
-                <div class="stat-card">
-                    <span class="stat-number">4+</span>
+                <div class="stat-card" onclick="window.location.href='#experience'" style="cursor: pointer;">
+                    <span class="stat-number">3</span>
                     <span class="stat-label">Years Experience</span>
                 </div>
                 <div class="stat-card">
@@ -2327,18 +2393,18 @@
                             <span class="expand-icon">▼</span>
                             <div class="timeline-title">Senior Systems Engineer</div>
                             <div class="timeline-company">Infosys, Bengaluru</div>
-                            <div class="timeline-brief">RPA and automation solutions</div>
+                            <div class="timeline-brief">Python data pipelines and microservices automation</div>
                         </div>
                         <div class="timeline-details">
                             <div class="timeline-details-content">
                                 <strong>Key Achievements:</strong>
                                 <ul>
-                                    <li>Developed RPA bots with OCR capabilities for data extraction</li>
-                                    <li>Improved processing speed by 3X</li>
-                                    <li>Automated complex document processing workflows</li>
-                                    <li>Collaborated with cross-functional teams on enterprise automation</li>
+                                    <li>Engineered Python data processing pipelines with concurrent execution, achieving 3X throughput improvement</li>
+                                    <li>Designed microservices integration patterns, reducing manual system interventions by 50%</li>
+                                    <li>Optimized database query performance through strategic indexing, reducing data processing latency by 35%</li>
+                                    <li>Developed monitoring and error-handling frameworks, improving data extraction accuracy by 20%</li>
                                 </ul>
-                                <strong style="display: block; margin-top: 12px;">Technologies:</strong> RPA, OCR, Automation Anywhere, Python
+                                <strong style="display: block; margin-top: 12px;">Technologies:</strong> Python, OCR, Microservices, ETL Pipelines, MySQL
                             </div>
                         </div>
                     </div>
@@ -2400,7 +2466,7 @@
     <section id="experience" class="section" style="background: var(--bg-white); padding: 80px 20px;">
         <div class="experience-section">
             <h2 style="text-align: center; font-family: 'Product Sans', sans-serif; font-size: 3rem; color: var(--text-primary); margin-bottom: 16px;">Work Experience</h2>
-            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 60px; font-size: 1.2rem;">4+ years of production-scale development experience</p>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 60px; font-size: 1.2rem;">3 years of production-scale development experience</p>
 
             <div class="experience-tabs-container">
                 <div class="experience-tabs">
@@ -2711,6 +2777,12 @@
                         Published research paper: "Doctor-Patient Assistance System using Artificial Intelligence" - Architected end-to-end AI architecture combining NLP with TensorFlow-based diagnostic models.
                     </p>
                     <p class="achievement-date">2020</p>
+                    <div class="cert-actions">
+                        <a href="https://ieeexplore.ieee.org/document/9532856" target="_blank" class="cert-btn">
+                            <span class="material-icons">description</span>
+                            View Publication
+                        </a>
+                    </div>
                 </div>
 
                 <div class="achievement-card">
@@ -2723,10 +2795,25 @@
                             <p class="achievement-org">Amazon Web Services</p>
                         </div>
                     </div>
+                    <div class="cert-meta">
+                        <span class="cert-badge cert-date">
+                            <span class="material-icons" style="font-size: 14px;">event</span>
+                            Nov 2023
+                        </span>
+                        <span class="cert-badge cert-expiry">
+                            <span class="material-icons" style="font-size: 14px;">verified</span>
+                            Valid until Nov 2026
+                        </span>
+                    </div>
                     <p class="achievement-description">
                         Validated expertise in AWS cloud architecture, security best practices, and core cloud services including EC2, S3, Lambda, and IAM.
                     </p>
-                    <p class="achievement-date">Valid Certification</p>
+                    <div class="cert-actions">
+                        <a href="https://www.credly.com/badges/29ec1719-01bc-42df-850d-f2a7a3e6bca6/linked_in_profile" target="_blank" class="cert-btn">
+                            <span class="material-icons">description</span>
+                            Show Credential
+                        </a>
+                    </div>
                 </div>
 
                 <div class="achievement-card">
@@ -2735,30 +2822,50 @@
                             <span class="material-icons">precision_manufacturing</span>
                         </div>
                         <div>
-                            <h3 class="achievement-title">RPA Developer Certification</h3>
+                            <h3 class="achievement-title">Automation Anywhere Certified Advanced RPA Professional</h3>
                             <p class="achievement-org">Automation Anywhere</p>
                         </div>
+                    </div>
+                    <div class="cert-meta">
+                        <span class="cert-badge cert-date">
+                            <span class="material-icons" style="font-size: 14px;">event</span>
+                            Mar 2021
+                        </span>
+                        <span class="cert-badge cert-credential">
+                            <span class="material-icons" style="font-size: 14px;">badge</span>
+                            ID: 29965043
+                        </span>
                     </div>
                     <p class="achievement-description">
                         Advanced certification in Robotic Process Automation demonstrating expertise in bot development, OCR integration, and enterprise automation solutions.
                     </p>
-                    <p class="achievement-date">2021</p>
+                    <div class="cert-actions">
+                        <a href="https://certificates.automationanywhere.com/62bc641a-e466-4ea9-8196-228e8d3abe44#acc.Hw1mQtTL" target="_blank" class="cert-btn">
+                            <span class="material-icons">description</span>
+                            Show Credential
+                        </a>
+                    </div>
                 </div>
 
                 <div class="achievement-card">
                     <div class="achievement-header">
                         <div class="achievement-icon">
-                            <span class="material-icons">emoji_events</span>
+                            <span class="material-icons">code</span>
                         </div>
                         <div>
-                            <h3 class="achievement-title">Hackathon Winner</h3>
-                            <p class="achievement-org">Coding Competitions</p>
+                            <h3 class="achievement-title">Infosys Certified Python Programmer</h3>
+                            <p class="achievement-org">Infosys</p>
                         </div>
                     </div>
+                    <div class="cert-meta">
+                        <span class="cert-badge cert-date">
+                            <span class="material-icons" style="font-size: 14px;">event</span>
+                            Dec 2020
+                        </span>
+                    </div>
                     <p class="achievement-description">
-                        Active participant in hackathons and coding competitions during undergraduate studies, demonstrating problem-solving skills and innovative thinking.
+                        Professional Python programming certification demonstrating proficiency in core Python concepts, data structures, and software development best practices.
                     </p>
-                    <p class="achievement-date">2016-2020</p>
                 </div>
             </div>
         </div>
